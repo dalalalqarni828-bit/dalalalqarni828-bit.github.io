@@ -222,7 +222,7 @@ html[dir="rtl"] .card:hover .more svg{transform:scaleX(-1) translateX(5px)}
 .stack-col h4{margin:0 0 14px;font:400 22px var(--display)}
 html[lang="ar"] .stack-col h4{font-family:var(--ar);font-weight:600;font-size:19px}
 .pills{display:flex;flex-wrap:wrap;gap:8px}
-.pills span{font-size:14px;font-weight:500;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+.pills span{font-size:14px;font-weight:500;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--tint);color:var(--ink)}
 
 /* journey */
 .timeline{position:relative;margin-top:40px;display:grid;gap:18px;padding-inline-start:34px}
@@ -269,7 +269,9 @@ footer{padding-block:40px 48px;color:var(--muted);font-size:13.5px;display:flex;
 .cv-paper ul{list-style:none;margin:0;padding:0}
 .cv-paper li{position:relative;padding-left:12px}
 .cv-paper li::before{content:"•";position:absolute;left:0}
-.cv-paper .cert{margin-bottom:3px}
+.cv-paper .cert{margin:0 0 3px;padding:0;border:0;border-radius:0;background:none;box-shadow:none;transform:none;align-items:baseline}
+.cv-paper .cert:hover{transform:none;border:0}
+.cv-paper .cert b{font-weight:700}
 .cv-paper .skills{columns:3 200px;column-gap:16px}
 .cv-paper .langs{display:flex;gap:40px}
 .cv-foot{margin:0 18px 18px;font-size:13px;color:var(--muted);text-align:center}
