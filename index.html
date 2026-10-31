@@ -566,7 +566,7 @@ const UI={
 };
 
 const PROJECTS=[
- {id:"assettrace",wide:true,kind:"shot",cover:"img/assettrace-home.jpg",video:"video/assettrace-demo.mp4",poster:"img/assettrace-poster.jpg",
+ {id:"assettrace",wide:true,kind:"shot",cover:"img/assettrace-home.jpg",clip:"video/assettrace-demo.mp4",poster:"img/assettrace-poster.jpg",
   repo:"https://github.com/dalalalqarni828-bit/DalalAlqarni-Capstone-Project",
   chips:["Python","Django","SQLite","Pillow"],
   figures:[["3",{en:"user roles",ar:"صلاحيات"}],["53",{en:"automated tests",ar:"اختبار آلي"}],["1",{en:"week to build",ar:"أسبوع للبناء"}]],
@@ -693,7 +693,7 @@ function renderProjects(){
     if(p.kind==="mock")media='<div class="phones"><img class="mock-img" src="'+p.cover+'" alt="'+esc(c.title)+' screens" loading="lazy"></div>';
     if(p.kind==="phones")media='<div class="phones">'+p.cover.map(s=>'<img src="'+s+'" alt="" loading="lazy">').join("")+'</div>';
     if(p.kind==="term")media='<div class="term"><b>=== LIBRARY ===</b><br>1.Add book  2.Register  3.Borrow<br>4.Return  5.Search  6.Show all<br>&gt; 3<br>Member ID: 101<br>Book title: clean code<br><span class="ok">✓ Dalal borrowed Clean Code</span><br>&gt; 7<br>Total Books: 6 · Borrowed: 1</div>';
-    return '<button class="card reveal'+(p.wide?' wide':'')+'" type="button" data-id="'+p.id+'"><div class="thumb">'+media+'<span class="tag-corner">'+esc(c.tag)+'</span>'+(p.video?'<span class="play-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'+UI[lang].demoBadge+'</span>':'')+'</div><div class="card-body"><span class="meta">'+esc(c.meta)+'</span><h3>'+esc(c.title)+'</h3><p>'+esc(c.short)+'</p><div class="chips">'+p.chips.map(x=>"<span>"+esc(x)+"</span>").join("")+'</div><span class="more">'+UI[lang].open+arrow+'</span></div></button>';
+    return '<button class="card reveal'+(p.wide?' wide':'')+'" type="button" data-id="'+p.id+'"><div class="thumb">'+media+'<span class="tag-corner">'+esc(c.tag)+'</span>'+(p.clip?'<span class="play-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'+UI[lang].demoBadge+'</span>':'')+'</div><div class="card-body"><span class="meta">'+esc(c.meta)+'</span><h3>'+esc(c.title)+'</h3><p>'+esc(c.short)+'</p><div class="chips">'+p.chips.map(x=>"<span>"+esc(x)+"</span>").join("")+'</div><span class="more">'+UI[lang].open+arrow+'</span></div></button>';
   }).join("");
 }
 function renderCerts(){$("#certList").innerHTML=CERTS.map(c=>'<div class="cert'+(c.f?' featured':'')+'"><span class="seal">'+c.s+'</span><div><h4>'+esc(c[lang][0])+'</h4><p>'+esc(c[lang][1])+'</p></div></div>').join("")}
@@ -753,8 +753,8 @@ function openProject(id){
   }
   const fig=p.figures.map(f=>'<div><b>'+esc(typeof f[0]==="object"?f[0][lang]:(lang==="ar"?toArDigits(f[0]):f[0]))+'</b><small>'+esc(f[1][lang])+'</small></div>').join("");
   let links="";
-  if(p.video)links+='<button class="btn btn-primary" type="button" id="watchBtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'+L.watch+'</button>';
-  if(p.repo)links+='<a class="btn '+(p.video?'btn-ghost':'btn-primary')+'" href="'+p.repo+'" target="_blank" rel="noopener">'+L.github+'</a>';
+  if(p.clip)links+='<button class="btn btn-primary" type="button" id="watchBtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'+L.watch+'</button>';
+  if(p.repo)links+='<a class="btn '+(p.clip?'btn-ghost':'btn-primary')+'" href="'+p.repo+'" target="_blank" rel="noopener">'+L.github+'</a>';
   if(p.demo)links+='<a class="btn btn-ghost" href="'+p.demo+'" target="_blank" rel="noopener">'+L.demo+'</a>';
   if(p.video)links+='<a class="btn btn-ghost" href="'+p.video+'" target="_blank" rel="noopener">'+L.video+'</a>';
   if(!links)links='<p>'+L.noRepo+'</p>';
@@ -770,13 +770,13 @@ dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
 const vidDlg=$("#vidDlg"),vid=$("#vid"),vidStatus=$("#vidStatus");let vidSrc=null,vidUrl=null;
 function openVideo(p){
   dlg.close();vidDlg.showModal();vid.poster=p.poster||"";
-  if(vidSrc===p.video&&vid.src){vid.play().catch(()=>{});return}
-  vidSrc=p.video;vidStatus.hidden=false;vidStatus.textContent=UI[lang].vidLoading;
-  fetch(p.video).then(r=>{if(!r.ok)throw new Error(r.status);return r.blob()}).then(b=>{
+  if(vidSrc===p.clip&&vid.src){vid.play().catch(()=>{});return}
+  vidSrc=p.clip;vidStatus.hidden=false;vidStatus.textContent=UI[lang].vidLoading;
+  fetch(p.clip).then(r=>{if(!r.ok)throw new Error(r.status);return r.blob()}).then(b=>{
     if(vidUrl)URL.revokeObjectURL(vidUrl);vidUrl=URL.createObjectURL(new Blob([b],{type:"video/mp4"}));
     vid.addEventListener("loadeddata",()=>{vidStatus.hidden=true},{once:true});
     vid.src=vidUrl;vid.play().catch(()=>{});
-  }).catch(()=>{vid.src=p.video;vid.addEventListener("loadeddata",()=>{vidStatus.hidden=true},{once:true});vid.addEventListener("error",()=>{vidStatus.textContent=UI[lang].vidError;vidSrc=null},{once:true});vid.play().catch(()=>{})});
+  }).catch(()=>{vid.src=p.clip;vid.addEventListener("loadeddata",()=>{vidStatus.hidden=true},{once:true});vid.addEventListener("error",()=>{vidStatus.textContent=UI[lang].vidError;vidSrc=null},{once:true});vid.play().catch(()=>{})});
 }
 $("#vidClose").addEventListener("click",()=>vidDlg.close());
 vidDlg.addEventListener("click",e=>{if(e.target===vidDlg)vidDlg.close()});
