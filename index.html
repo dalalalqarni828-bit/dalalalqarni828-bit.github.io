@@ -277,6 +277,16 @@ footer{padding-block:40px 48px;color:var(--muted);font-size:13.5px;display:flex;
 .cv-foot{margin:0 18px 18px;font-size:13px;color:var(--muted);text-align:center}
 .cv-card{font:inherit;text-align:start;cursor:pointer}
 
+/* demo video */
+.play-badge{position:absolute;bottom:14px;inset-inline-end:14px;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:600;padding:7px 12px 7px 10px;border-radius:999px;background:rgba(14,12,40,.78);color:#fff;backdrop-filter:blur(6px)}
+.play-badge svg{width:14px;height:14px}
+.vid-dlg{width:min(1100px,calc(100vw - 20px));background:#000;padding:0}
+.vid-wrap{position:relative;background:#000}
+.vid-wrap video{display:block;width:100%;max-width:100%;aspect-ratio:16/9;max-height:calc(100dvh - 40px);background:#000}
+.vid-status{position:absolute;inset:auto 0 50%;margin:0;text-align:center;color:#cfcbe8;font-size:14px;pointer-events:none}
+.vid-dlg .close{background:rgba(255,255,255,.92);color:#111}
+#watchBtn svg{width:16px;height:16px}
+
 /* dialog */
 dialog{border:0;padding:0;width:min(980px,calc(100vw - 24px));max-height:calc(100dvh - 32px);border-radius:28px;background:var(--surface);color:var(--ink);box-shadow:0 40px 120px -30px rgba(0,0,0,.6)}
 dialog::backdrop{background:rgba(12,10,30,.55);backdrop-filter:blur(6px)}
@@ -501,6 +511,11 @@ html[lang="ar"] .dlg-text h5{letter-spacing:0;font-size:14px}
   <p class="cv-foot" data-t="cv.note">Phone number available on request.</p>
 </dialog>
 
+<dialog id="vidDlg" class="vid-dlg" aria-label="Demo video">
+  <button class="close" type="button" id="vidClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div class="vid-wrap"><video id="vid" controls playsinline preload="none"></video><p class="vid-status" id="vidStatus" hidden></p></div>
+</dialog>
+
 <dialog id="dlg" aria-labelledby="dlgTitle">
   <button class="close" type="button" id="dlgClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
   <div class="dlg">
@@ -530,7 +545,7 @@ const UI={
   "journey.eyebrow":"Journey","journey.title":"Education, training <em>&amp; experience</em>",
   "contact.eyebrow":"Contact","contact.title":"Let's build something <em>together</em>","contact.sub":"I'm open to new opportunities and always happy to connect. The fastest way to reach me is by email or LinkedIn.",
   "contact.email":"Email","contact.copy":"Copy","contact.copied":"Copied","footer":"Junior Full-Stack Developer · Riyadh",
-  "open":"View details","problem":"The problem","role":"My role","features":"What it does","tech":"Built with","github":"Code on GitHub","demo":"Live demo","video":"Demo video","noRepo":"Source code was submitted to the university.",
+  "open":"View details","problem":"The problem","role":"My role","features":"What it does","tech":"Built with","github":"Code on GitHub","demo":"Live demo","video":"Demo video","noRepo":"Source code was submitted to the university.","watch":"Watch demo","demoBadge":"Demo video","vidLoading":"Loading video…","vidError":"The video could not load. Please try again.",
   "typed":["full-stack web apps.","secure back-ends.","clean, tested code.","systems people rely on."]},
  ar:{"brand":"دلال القرني","cv.btn":"عرض السيرة الذاتية","cv.note":"رقم الجوال متاح عند الطلب.","nav.about":"نبذة","nav.work":"أعمالي","nav.journey":"مسيرتي","nav.contact":"تواصل",
   "hero.badge":"متاحة للعمل · الرياض","hero.role":"مطوّرة Full-Stack مبتدئة","hero.first":"دلال","hero.last":"القرني",
@@ -546,12 +561,12 @@ const UI={
   "journey.eyebrow":"مسيرتي","journey.title":"التعليم والتدريب <em>والخبرات</em>",
   "contact.eyebrow":"تواصل","contact.title":"لنبنِ شيئاً <em>معاً</em>","contact.sub":"منفتحة على الفرص الجديدة ويسعدني التواصل دائماً. أسرع طريقة للتواصل معي عبر البريد أو لينكدإن.",
   "contact.email":"البريد الإلكتروني","contact.copy":"نسخ","contact.copied":"تم النسخ","footer":"مطوّرة Full-Stack مبتدئة · الرياض",
-  "open":"عرض التفاصيل","problem":"المشكلة","role":"دوري","features":"ماذا يقدم","tech":"التقنيات","github":"الكود على GitHub","demo":"العرض المباشر","video":"فيديو العرض","noRepo":"الكود سُلّم للجامعة ضمن مشروع التخرج.",
+  "open":"عرض التفاصيل","problem":"المشكلة","role":"دوري","features":"ماذا يقدم","tech":"التقنيات","github":"الكود على GitHub","demo":"العرض المباشر","video":"فيديو العرض","noRepo":"الكود سُلّم للجامعة ضمن مشروع التخرج.","watch":"شاهد العرض","demoBadge":"فيديو عرض","vidLoading":"جاري تحميل الفيديو…","vidError":"تعذّر تحميل الفيديو، حاول مرة ثانية.",
   "typed":["تطبيقات ويب متكاملة.","أنظمة باك اند آمنة.","كوداً نظيفاً ومختبراً.","تطبيقات ويب بـ Django.","أنظمة يعتمد عليها الناس."]}
 };
 
 const PROJECTS=[
- {id:"assettrace",wide:true,kind:"shot",cover:"img/assettrace-home.jpg",
+ {id:"assettrace",wide:true,kind:"shot",cover:"img/assettrace-home.jpg",video:"video/assettrace-demo.mp4",poster:"img/assettrace-poster.jpg",
   repo:"https://github.com/dalalalqarni828-bit/DalalAlqarni-Capstone-Project",
   chips:["Python","Django","SQLite","Pillow"],
   figures:[["3",{en:"user roles",ar:"صلاحيات"}],["53",{en:"automated tests",ar:"اختبار آلي"}],["1",{en:"week to build",ar:"أسبوع للبناء"}]],
@@ -678,7 +693,7 @@ function renderProjects(){
     if(p.kind==="mock")media='<div class="phones"><img class="mock-img" src="'+p.cover+'" alt="'+esc(c.title)+' screens" loading="lazy"></div>';
     if(p.kind==="phones")media='<div class="phones">'+p.cover.map(s=>'<img src="'+s+'" alt="" loading="lazy">').join("")+'</div>';
     if(p.kind==="term")media='<div class="term"><b>=== LIBRARY ===</b><br>1.Add book  2.Register  3.Borrow<br>4.Return  5.Search  6.Show all<br>&gt; 3<br>Member ID: 101<br>Book title: clean code<br><span class="ok">✓ Dalal borrowed Clean Code</span><br>&gt; 7<br>Total Books: 6 · Borrowed: 1</div>';
-    return '<button class="card reveal'+(p.wide?' wide':'')+'" type="button" data-id="'+p.id+'"><div class="thumb">'+media+'<span class="tag-corner">'+esc(c.tag)+'</span></div><div class="card-body"><span class="meta">'+esc(c.meta)+'</span><h3>'+esc(c.title)+'</h3><p>'+esc(c.short)+'</p><div class="chips">'+p.chips.map(x=>"<span>"+esc(x)+"</span>").join("")+'</div><span class="more">'+UI[lang].open+arrow+'</span></div></button>';
+    return '<button class="card reveal'+(p.wide?' wide':'')+'" type="button" data-id="'+p.id+'"><div class="thumb">'+media+'<span class="tag-corner">'+esc(c.tag)+'</span>'+(p.video?'<span class="play-badge"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'+UI[lang].demoBadge+'</span>':'')+'</div><div class="card-body"><span class="meta">'+esc(c.meta)+'</span><h3>'+esc(c.title)+'</h3><p>'+esc(c.short)+'</p><div class="chips">'+p.chips.map(x=>"<span>"+esc(x)+"</span>").join("")+'</div><span class="more">'+UI[lang].open+arrow+'</span></div></button>';
   }).join("");
 }
 function renderCerts(){$("#certList").innerHTML=CERTS.map(c=>'<div class="cert'+(c.f?' featured':'')+'"><span class="seal">'+c.s+'</span><div><h4>'+esc(c[lang][0])+'</h4><p>'+esc(c[lang][1])+'</p></div></div>').join("")}
@@ -738,16 +753,34 @@ function openProject(id){
   }
   const fig=p.figures.map(f=>'<div><b>'+esc(typeof f[0]==="object"?f[0][lang]:(lang==="ar"?toArDigits(f[0]):f[0]))+'</b><small>'+esc(f[1][lang])+'</small></div>').join("");
   let links="";
-  if(p.repo)links+='<a class="btn btn-primary" href="'+p.repo+'" target="_blank" rel="noopener">'+L.github+'</a>';
+  if(p.video)links+='<button class="btn btn-primary" type="button" id="watchBtn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'+L.watch+'</button>';
+  if(p.repo)links+='<a class="btn '+(p.video?'btn-ghost':'btn-primary')+'" href="'+p.repo+'" target="_blank" rel="noopener">'+L.github+'</a>';
   if(p.demo)links+='<a class="btn btn-ghost" href="'+p.demo+'" target="_blank" rel="noopener">'+L.demo+'</a>';
   if(p.video)links+='<a class="btn btn-ghost" href="'+p.video+'" target="_blank" rel="noopener">'+L.video+'</a>';
   if(!links)links='<p>'+L.noRepo+'</p>';
   $("#dlgText").innerHTML='<span class="meta" style="font-size:13px;color:var(--accent);font-weight:600">'+esc(c.meta)+'</span><h3 id="dlgTitle">'+esc(c.title)+'</h3><p>'+esc(c.short)+'</p><div class="figures">'+fig+'</div><h5>'+L.problem+'</h5><p>'+esc(c.problem)+'</p><h5>'+L.role+'</h5><p>'+esc(c.role)+'</p><h5>'+L.features+'</h5><ul>'+c.features.map(f=>"<li>"+esc(f)+"</li>").join("")+'</ul><h5>'+L.tech+'</h5><div class="chips">'+p.chips.map(x=>"<span>"+esc(x)+"</span>").join("")+'</div><div class="dlg-links">'+links+'</div>';
   dlg.showModal();$("#dlgText").scrollTop=0;
+  const wb=$("#watchBtn");if(wb)wb.addEventListener("click",()=>openVideo(p));
 }
 $("#projectGrid").addEventListener("click",e=>{const c=e.target.closest(".card");if(c)openProject(c.dataset.id)});
 $("#dlgClose").addEventListener("click",()=>dlg.close());
 dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+
+/* demo video dialog: loads only when opened */
+const vidDlg=$("#vidDlg"),vid=$("#vid"),vidStatus=$("#vidStatus");let vidSrc=null,vidUrl=null;
+function openVideo(p){
+  dlg.close();vidDlg.showModal();vid.poster=p.poster||"";
+  if(vidSrc===p.video&&vid.src){vid.play().catch(()=>{});return}
+  vidSrc=p.video;vidStatus.hidden=false;vidStatus.textContent=UI[lang].vidLoading;
+  fetch(p.video).then(r=>{if(!r.ok)throw new Error(r.status);return r.blob()}).then(b=>{
+    if(vidUrl)URL.revokeObjectURL(vidUrl);vidUrl=URL.createObjectURL(new Blob([b],{type:"video/mp4"}));
+    vid.addEventListener("loadeddata",()=>{vidStatus.hidden=true},{once:true});
+    vid.src=vidUrl;vid.play().catch(()=>{});
+  }).catch(()=>{vid.src=p.video;vid.addEventListener("loadeddata",()=>{vidStatus.hidden=true},{once:true});vid.addEventListener("error",()=>{vidStatus.textContent=UI[lang].vidError;vidSrc=null},{once:true});vid.play().catch(()=>{})});
+}
+$("#vidClose").addEventListener("click",()=>vidDlg.close());
+vidDlg.addEventListener("click",e=>{if(e.target===vidDlg)vidDlg.close()});
+vidDlg.addEventListener("close",()=>vid.pause());
 
 /* CV dialog */
 const cvDlg=$("#cvDlg");
