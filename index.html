@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Dalal Alqarni</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Ccircle cx='60' cy='60' r='54' fill='%23ffffff' stroke='%231c1d38' stroke-width='6'/%3E%3Ccircle cx='60' cy='60' r='43' fill='none' stroke='%236447d6' stroke-width='3'/%3E%3Ctext x='60' y='73' text-anchor='middle' font-family='Georgia,serif' font-size='36' fill='%231c1d38'%3EDA%3C/text%3E%3C/svg%3E">
+<meta property="og:title" content="Dalal Alqarni · Portfolio">
+<meta property="og:description" content="Computer Science graduate. Projects, certificates and journey.">
+<style>[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Dalal Alqarni, Junior Full-Stack Developer. Python, Django and Flask projects.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,300;0,400;0,500;1,300&family=Manrope:wght@400;500;600&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600&family=JetBrains+Mono:wght@400&family=Lora:wght@400&display=swap">
+<style>
+/* Layout: floating pill nav, split hero (text + arched illustration), tabbed work section with project dialogs, vertical journey timeline, contact cards. */
+:root{
+  --bg:#f7f6fb; --surface:#ffffff; --tint:#efebfb; --ink:#1c1d38; --muted:#5f6180; --line:#e3e0ef;
+  --accent:#6447d6; --accent-2:#d9668f; --accent-ink:#ffffff; --glow-a:#ddd3ff; --glow-b:#ffd9e7;
+  --good:#2f8f63; --shadow:0 24px 60px -28px rgba(40,30,110,.35);
+  --card:#ffffff; --card-ink:#1c1d38; --card-muted:#5f6180; --card-tint:#efebfb; --card-line:#e3e0ef; --card-accent:#6447d6;
+  --display:"Jost","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:"Manrope","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  --ar:"IBM Plex Sans Arabic","Segoe UI",Tahoma,sans-serif;
+  --r-lg:28px; --r-md:18px; --r-sm:12px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0d0e1d; --surface:#15172b; --tint:#1d1b38; --ink:#eeecf8; --muted:#a3a2c2; --line:#2a2b47;
+  --accent:#a68fff; --accent-2:#ff8fb5; --accent-ink:#120f26; --glow-a:#3a2a8a; --glow-b:#6a2347;
+  --good:#5fd39b; --shadow:0 30px 70px -30px rgba(0,0,0,.7); --card:#eae7f8; --card-ink:#15162c; --card-muted:#55577a; --card-tint:#dad4f6; --card-line:#d6d0f0; --card-accent:#5a3ed0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0d0e1d; --surface:#15172b; --tint:#1d1b38; --ink:#eeecf8; --muted:#a3a2c2; --line:#2a2b47;
+  --accent:#a68fff; --accent-2:#ff8fb5; --accent-ink:#120f26; --glow-a:#3a2a8a; --glow-b:#6a2347;
+  --good:#5fd39b; --shadow:0 30px 70px -30px rgba(0,0,0,.7); --card:#eae7f8; --card-ink:#15162c; --card-muted:#55577a; --card-tint:#dad4f6; --card-line:#d6d0f0; --card-accent:#5a3ed0; color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.65 var(--body);overflow-x:hidden;transition:background-color .5s,color .5s}
+html[lang="ar"] body{font-family:var(--ar)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--bg)}
+img{max-width:100%;display:block}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+
+/* ambient glow */
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.ambient span{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55;animation:drift 22s ease-in-out infinite}
+.ambient span:nth-child(1){width:520px;height:520px;background:var(--glow-a);top:-160px;inset-inline-end:-120px}
+.ambient span:nth-child(2){width:380px;height:380px;background:var(--glow-b);top:38%;inset-inline-start:-160px;animation-delay:-9s;opacity:.4}
+@keyframes drift{50%{transform:translate(-50px,60px) scale(1.12)}}
+main,header,footer{position:relative;z-index:1}
+
+/* nav */
+.nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 14px);z-index:50;margin-top:14px}
+.nav-in{display:flex;align-items:center;gap:12px;padding:6px 8px 6px 8px;border:1px solid var(--line);border-radius:999px;background:color-mix(in srgb,var(--surface) 78%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 10px 30px -22px rgba(30,20,90,.4)}
+html[dir="rtl"] .nav-in{padding:6px 8px}
+.mark{font:500 20px/1 var(--display);letter-spacing:.06em;text-decoration:none;display:flex;align-items:center;gap:8px}
+.seal-logo{width:42px;height:42px;flex:none;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.mark:hover .seal-logo{transform:rotate(-12deg)}
+.mark-name{font:500 16px var(--display);letter-spacing:.02em}
+html[lang="ar"] .mark-name{font-family:var(--ar);letter-spacing:0}
+@media (max-width:340px){.mark-name{display:none}}
+.links{display:flex;gap:4px;margin-inline-start:auto}
+.links a{text-decoration:none;font-size:14px;color:var(--muted);padding:8px 14px;border-radius:999px;transition:color .3s,background .3s}
+.links a:hover{color:var(--ink);background:var(--tint)}
+.tools{display:flex;gap:6px}
+.icon-btn{border:1px solid var(--line);background:var(--surface);height:40px;min-width:40px;padding:0 12px;border-radius:999px;cursor:pointer;display:grid;place-items:center;font-size:13px;font-weight:600;transition:transform .3s,border-color .3s}
+.icon-btn:hover{transform:translateY(-2px);border-color:var(--accent)}
+.icon-btn svg{width:18px;height:18px}
+.sun{display:none}
+:root[data-theme="dark"] .sun{display:block} :root[data-theme="dark"] .moon{display:none}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .sun{display:block}:root:not([data-theme="light"]) .moon{display:none}}
+@media (max-width:860px){.links{display:none}.tools{margin-inline-start:auto}}
+
+/* card surfaces: in dark mode they take the contact block's light lavender */
+.card,.fact,.cert,.stack-col,.step{--surface:var(--card);--ink:var(--card-ink);--muted:var(--card-muted);--tint:var(--card-tint);--line:var(--card-line);--accent:var(--card-accent);background:var(--surface);color:var(--ink)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center;padding-block:72px 40px}
+.hero-text{min-width:0}
+.badge{display:inline-flex;align-items:center;gap:10px;font-size:13px;font-weight:600;padding:8px 16px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 0 var(--good);animation:ping 2.2s infinite}
+@keyframes ping{70%{box-shadow:0 0 0 9px transparent}100%{box-shadow:0 0 0 0 transparent}}
+.role{margin:28px 0 10px;font-size:13px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--accent)}
+html[lang="ar"] .role{letter-spacing:0;font-size:15px}
+h1{margin:0;font:300 clamp(44px,6.2vw,84px)/1.05 var(--display);letter-spacing:-.025em;text-wrap:balance}
+html[lang="ar"] h1{font-family:var(--ar);font-weight:500;letter-spacing:0;line-height:1.15}
+h1 .line{display:inline-block;overflow:hidden;padding-bottom:.06em;vertical-align:top}
+h1 .line:first-child{margin-inline-end:.24em}
+h1 .line span{display:inline-block;animation:rise 1.1s cubic-bezier(.2,.8,.2,1) both}
+h1 .line:nth-child(2) span{animation-delay:.12s;font-style:italic;background:linear-gradient(100deg,var(--accent),var(--accent-2),var(--accent));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:rise 1.1s .12s cubic-bezier(.2,.8,.2,1) both,sheen 7s 1.4s ease-in-out infinite;padding-inline-end:.06em}
+html[lang="ar"] h1 .line:nth-child(2) span{font-style:normal}
+@keyframes rise{from{transform:translateY(100%)}}
+@keyframes sheen{50%{background-position:100% 0}}
+.lede{margin:24px 0 0;max-width:34em;font-size:18px;color:var(--muted)}
+.typed{color:var(--ink);font-weight:600;border-inline-end:2px solid var(--accent);padding-inline-end:2px;animation:caret 1s step-end infinite}
+@keyframes caret{50%{border-color:transparent}}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.btn{display:inline-flex;align-items:center;gap:10px;text-decoration:none;font-weight:600;font-size:15px;padding:14px 24px;border-radius:999px;border:1px solid transparent;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,background .35s;cursor:pointer}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{background:var(--ink);color:var(--bg)}
+.btn-primary:hover{box-shadow:0 14px 30px -14px var(--accent)}
+.btn-ghost{border-color:var(--line);background:var(--surface)}
+.btn svg{width:18px;height:18px}
+html[dir="rtl"] .arrow{transform:scaleX(-1)}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:48px;border-top:1px solid var(--line);max-width:600px}
+.stat{padding:18px 0 0;padding-inline-end:16px}
+.stat+.stat{padding-inline-start:16px;border-inline-start:1px solid var(--line)}
+.stat b{display:block;font:400 34px/1.1 var(--display);font-variant-numeric:tabular-nums}
+.stat span{font-size:12.5px;color:var(--muted)}
+.hero-art{position:relative;justify-self:center;width:min(100%,460px);min-width:0}
+.code{position:relative;border-radius:var(--r-lg);background:#14152b;color:#d9d6f2;box-shadow:var(--shadow);border:1px solid rgba(255,255,255,.08);overflow:hidden;animation:unveil2 1.2s .25s cubic-bezier(.2,.8,.2,1) both}
+.code::after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(var(--accent),transparent 70%);opacity:.35;bottom:-130px;right:-90px;pointer-events:none;animation:drift 14s ease-in-out infinite}
+.code-bar{display:flex;align-items:center;gap:7px;padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.08);font:12px var(--mono);color:#9c98c4}
+.code-bar i{width:10px;height:10px;border-radius:50%;background:#ff6b6b}.code-bar i:nth-child(2){background:#ffd166}.code-bar i:nth-child(3){background:#4ecb8f}
+.code-bar span{margin-left:8px}
+.code pre{margin:0;padding:22px 22px 52px;font:13.5px/1.75 var(--mono);overflow-x:auto;text-align:left}
+.code .k{color:#c4a7ff}.code .c{color:#7fd6ff}.code .s{color:#ffb4cf}.code .n{color:#ffd166}.code .f{color:#8be3b4}.code .m{color:#6f6c97;font-style:italic}
+@keyframes unveil2{from{opacity:0;transform:translateY(30px) rotate(-1.5deg)}}
+.chip{position:absolute;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;padding:10px 14px;border-radius:14px;background:var(--surface);border:1px solid var(--line);box-shadow:0 14px 30px -18px rgba(30,20,90,.45);animation:bob 5s ease-in-out infinite}
+.chip small{display:block;font-weight:500;color:var(--muted);font-size:11px}
+.chip .dot{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:var(--tint);color:var(--accent);font:500 13px var(--mono)}
+.chip.c1{top:-22px;inset-inline-end:-18px}
+.chip.c2{bottom:-28px;inset-inline-start:-22px;animation-delay:-2.5s}
+@keyframes bob{50%{transform:translateY(-10px)}}
+@media (max-width:900px){.hero{grid-template-columns:1fr;gap:44px;padding-block:44px 20px}.hero-art{width:100%;margin-bottom:20px}.chip.c1{inset-inline-end:-4px}.chip.c2{inset-inline-start:-4px}.code pre{font-size:12px;padding:18px 18px 50px}}
+@media (max-width:520px){.stats{grid-template-columns:repeat(2,1fr)}.stat:nth-child(3){border-inline-start:0;padding-inline-start:0}.stat:nth-child(n+3){margin-top:4px}}
+
+/* marquee */
+.marquee{direction:ltr;margin-block:56px 8px;border-block:1px solid var(--line);overflow:hidden;padding-block:20px;-webkit-mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.track{display:flex;gap:40px;width:max-content;animation:scroll 40s linear infinite;font:300 26px var(--display);color:var(--muted);direction:ltr}
+.track span{display:flex;align-items:center;gap:40px;white-space:nowrap}
+.track span::after{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);opacity:.6}
+@keyframes scroll{to{transform:translateX(-50%)}}
+
+/* sections */
+section{padding-block:88px 0}
+.eyebrow{font-size:13px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--accent);margin:0 0 12px}
+html[lang="ar"] .eyebrow{letter-spacing:0;font-size:15px}
+h2{margin:0 0 18px;font:300 clamp(36px,5vw,56px)/1.08 var(--display);letter-spacing:-.02em;text-wrap:balance}
+html[lang="ar"] h2{font-family:var(--ar);font-weight:500;letter-spacing:0;line-height:1.3}
+h2 em{font-style:italic;color:var(--accent)}
+html[lang="ar"] h2 em{font-style:normal}
+.sub{color:var(--muted);max-width:40em;margin:0}
+
+/* about */
+.about{display:grid;grid-template-columns:1.25fr 1fr;gap:56px;align-items:center}
+.about-art{border-radius:var(--r-lg);overflow:hidden;aspect-ratio:4/5;border:1px solid var(--line);box-shadow:var(--shadow)}
+.about-art img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.about-art:hover img{transform:scale(1.05)}
+.about-text{min-width:0}
+.about-text p{color:var(--muted);margin:0 0 16px;max-width:38em}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;align-self:center}
+.fact{padding:22px 20px!important}
+.fact{padding:16px 18px;border-radius:var(--r-md);background:var(--surface);border:1px solid var(--line)}
+.fact small{display:block;color:var(--muted);font-size:12px;letter-spacing:.12em;text-transform:uppercase}
+html[lang="ar"] .fact small{letter-spacing:0;font-size:13px}
+.fact b{font-weight:600;font-size:15px}
+@media (max-width:900px){.about{grid-template-columns:1fr;gap:28px}}
+@media (max-width:420px){.facts{grid-template-columns:1fr}}
+
+/* tabs */
+.tabbar{display:inline-flex;gap:4px;padding:5px;border-radius:999px;background:var(--surface);border:1px solid var(--line);margin:30px 0 32px;position:relative;max-width:100%;overflow-x:auto}
+.tab{position:relative;z-index:1;border:0;background:transparent;padding:10px 20px;border-radius:999px;font-weight:600;font-size:14px;color:var(--muted);cursor:pointer;white-space:nowrap;transition:color .35s}
+.tab[aria-selected="true"]{color:var(--bg)}
+.tab-pill{position:absolute;z-index:0;top:5px;bottom:5px;border-radius:999px;background:var(--ink);transition:left .45s cubic-bezier(.2,.8,.2,1),width .45s cubic-bezier(.2,.8,.2,1)}
+.panel[hidden]{display:none!important}
+
+/* project cards */
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.card{min-width:0;display:flex;flex-direction:column;text-align:start;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-lg);overflow:hidden;cursor:pointer;padding:0;transition:transform .6s cubic-bezier(.2,.8,.2,1),box-shadow .6s,border-color .4s}
+.card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.card:last-child:nth-child(odd){grid-column:1/-1;flex-direction:row}
+.card:last-child:nth-child(odd) .thumb{flex:0 0 50%;aspect-ratio:auto;min-height:260px}
+.thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--tint)}
+.thumb>img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.card:hover .thumb>img{transform:scale(1.05)}
+.phones{position:absolute;inset:0;display:flex;justify-content:center;align-items:flex-end;gap:12px;padding-top:22px;background:linear-gradient(160deg,var(--tint),color-mix(in srgb,var(--accent) 22%,var(--tint)))}
+.phones .mock-img{width:100%;height:100%;object-fit:cover;object-position:center 20%;border:0;border-radius:0;box-shadow:none;transform:none}
+.card:hover .phones .mock-img{transform:scale(1.04)}
+.phones img{width:26%;border-radius:14px 14px 0 0;border:4px solid #fff;border-bottom:0;box-shadow:0 10px 30px -12px rgba(20,20,60,.4);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.phones img:nth-child(2){width:29%;transform:translateY(-10px)}
+.card:hover .phones img{transform:translateY(-8px)} .card:hover .phones img:nth-child(2){transform:translateY(-20px)}
+.term{position:absolute;inset:16px 16px 0;border-radius:12px 12px 0 0;background:#14152a;color:#cfcbe8;font:12px/1.6 var(--mono);padding:34px 16px 12px;overflow:hidden;direction:ltr;text-align:left}
+.term::before{content:"";position:absolute;top:13px;left:14px;width:9px;height:9px;border-radius:50%;background:#ff6b6b;box-shadow:15px 0 #ffd166,30px 0 #4ecb8f}
+.term b{color:#a68fff;font-weight:400}.term .ok{color:#5fd39b}
+.tag-corner{position:absolute;top:14px;inset-inline-start:14px;font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;background:var(--surface);color:var(--ink);border:1px solid var(--line)}
+.card-body{padding:22px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+.meta{font-size:12.5px;color:var(--accent);font-weight:600}
+.card h3{margin:0;font:400 28px/1.15 var(--display);letter-spacing:-.01em}
+html[lang="ar"] .card h3{font-family:var(--ar);font-weight:600;font-size:24px}
+.card p{margin:0;color:var(--muted);font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:8px}
+.chips span{font-size:12px;font-weight:600;padding:5px 11px;border-radius:999px;background:var(--tint);color:var(--ink)}
+.more{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;margin-top:6px}
+.more svg{width:16px;height:16px;transition:transform .4s}
+.card:hover .more svg{transform:translateX(5px)}
+html[dir="rtl"] .card:hover .more svg{transform:scaleX(-1) translateX(5px)}
+@media (max-width:640px){.grid{grid-template-columns:1fr}.card:last-child:nth-child(odd){grid-column:auto;flex-direction:column}.card:last-child:nth-child(odd) .thumb{flex:none;aspect-ratio:16/10;min-height:0}}
+
+/* certificates */
+.certs{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.cert{display:flex;gap:16px;align-items:flex-start;padding:18px;border-radius:var(--r-md);background:var(--surface);border:1px solid var(--line);transition:transform .4s,border-color .4s;min-width:0}
+.cert:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--accent) 45%,var(--line))}
+.seal{flex:none;width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--tint);color:var(--accent);font:500 13px var(--mono)}
+.cert.featured .seal{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:var(--accent-ink)}
+.cert h4{margin:0 0 2px;font-size:15.5px;font-weight:600;line-height:1.4}
+.cert p{margin:0;color:var(--muted);font-size:13.5px}
+
+/* stack */
+.stack{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:900px){.stack{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.stack{grid-template-columns:1fr}}
+.stack-col{padding:22px;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--line);min-width:0}
+.stack-col h4{margin:0 0 14px;font:400 22px var(--display)}
+html[lang="ar"] .stack-col h4{font-family:var(--ar);font-weight:600;font-size:19px}
+.pills{display:flex;flex-wrap:wrap;gap:8px}
+.pills span{font-size:14px;font-weight:500;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:var(--bg)}
+
+/* journey */
+.timeline{position:relative;margin-top:40px;display:grid;gap:18px;padding-inline-start:34px}
+.timeline::before{content:"";position:absolute;top:8px;bottom:8px;inset-inline-start:9px;width:2px;background:linear-gradient(var(--accent),var(--accent-2),var(--line))}
+.step{position:relative;padding:20px 22px;border-radius:var(--r-md);background:var(--surface);border:1px solid var(--line);min-width:0}
+.step::before{content:"";position:absolute;top:26px;inset-inline-start:-31px;width:12px;height:12px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
+.step time{font-size:13px;font-weight:600;color:var(--accent)}
+.step h4{margin:4px 0 4px;font-size:18px;font-weight:600;line-height:1.4}
+.step .org{color:var(--ink);opacity:.8;font-size:14.5px;margin:0 0 6px}
+.step p{margin:0;color:var(--muted);font-size:14.5px}
+.kind{display:inline-block;font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:999px;background:var(--tint);margin-inline-start:8px;vertical-align:2px}
+
+/* contact */
+.contact{margin-top:96px;padding:56px clamp(22px,5vw,64px);border-radius:36px;background:var(--ink);color:var(--bg);position:relative;overflow:hidden}
+.contact::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(var(--accent),transparent 70%);opacity:.5;top:-200px;inset-inline-end:-120px;animation:drift 18s ease-in-out infinite}
+.contact h2{color:var(--bg);position:relative}
+.contact h2 em{color:var(--glow-a)}
+:root[data-theme="dark"] .contact h2 em{color:var(--accent)}
+.contact .sub{color:color-mix(in srgb,var(--bg) 70%,transparent);position:relative}
+.links-grid{position:relative;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:32px}
+@media (max-width:640px){.links-grid{grid-template-columns:1fr}}
+.link-card{display:flex;align-items:center;gap:14px;padding:18px;border-radius:var(--r-md);background:color-mix(in srgb,var(--bg) 8%,transparent);border:1px solid color-mix(in srgb,var(--bg) 16%,transparent);text-decoration:none;color:var(--bg);min-width:0;transition:background .3s,transform .3s}
+.link-card:hover{background:color-mix(in srgb,var(--bg) 14%,transparent);transform:translateY(-3px)}
+.link-card svg{flex:none;width:22px;height:22px}
+.link-card div{min-width:0}
+
+.link-card small{display:block;opacity:.65;font-size:12px}
+.link-card b{display:block;font-weight:600;font-size:14.5px;overflow-wrap:anywhere}
+.copy{margin-inline-start:auto;border:1px solid color-mix(in srgb,var(--bg) 25%,transparent);background:transparent;color:var(--bg);font-size:12px;font-weight:600;padding:6px 12px;border-radius:999px;cursor:pointer;flex:none}
+footer{padding-block:40px 48px;color:var(--muted);font-size:13.5px;display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between}
+
+/* CV viewer: a paper sheet that stays white in both themes */
+.cv-dlg{width:min(860px,calc(100vw - 20px));background:var(--tint)}
+.cv-paper{--paper:#ffffff;--paper-ink:#141414;--paper-muted:#555;background:var(--paper);color:var(--paper-ink);margin:18px;padding:clamp(20px,5vw,48px);border-radius:10px;box-shadow:0 20px 50px -30px rgba(0,0,0,.5);font:400 14px/1.5 Georgia,"Times New Roman",serif;text-align:left;overflow-x:auto}
+.cv-paper .cv-name{font:700 28px/1.15 Georgia,serif;margin:0 0 6px}
+.cv-paper .note{font-size:12px;font-weight:400;font-style:italic;letter-spacing:0;color:var(--paper-muted)}
+.cv-paper .cv-title{margin:4px 0 8px;font-size:16px}
+.cv-paper .cv-contact{margin:0;font-size:12.5px;color:var(--paper-muted);overflow-wrap:anywhere}
+.cv-paper .cv-h{font:700 14.5px Georgia,serif;letter-spacing:.03em;border-bottom:1.5px solid var(--paper-ink);padding-bottom:2px;margin:18px 0 6px}
+.cv-paper p{margin:0}
+.cv-paper .row,.cv-paper .cert{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.cv-paper .d{white-space:nowrap;color:var(--paper-muted)}
+.cv-paper .item{margin-bottom:7px}
+.cv-paper ul{list-style:none;margin:0;padding:0}
+.cv-paper li{position:relative;padding-left:12px}
+.cv-paper li::before{content:"•";position:absolute;left:0}
+.cv-paper .cert{margin-bottom:3px}
+.cv-paper .skills{columns:3 200px;column-gap:16px}
+.cv-paper .langs{display:flex;gap:40px}
+.cv-foot{margin:0 18px 18px;font-size:13px;color:var(--muted);text-align:center}
+.cv-card{font:inherit;text-align:start;cursor:pointer}
+
+/* dialog */
+dialog{border:0;padding:0;width:min(980px,calc(100vw - 24px));max-height:calc(100dvh - 32px);border-radius:28px;background:var(--surface);color:var(--ink);box-shadow:0 40px 120px -30px rgba(0,0,0,.6)}
+dialog::backdrop{background:rgba(12,10,30,.55);backdrop-filter:blur(6px)}
+dialog[open]{animation:pop .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{opacity:0;transform:translateY(24px) scale(.98)}}
+.dlg{display:grid;grid-template-columns:1.1fr .9fr;min-height:0}
+.dlg-media{background:var(--tint);padding:22px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.dlg-main{border-radius:16px;overflow:hidden;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;max-height:62dvh}
+.dlg-main img{max-height:62dvh;width:100%;object-fit:contain;object-position:top}
+.dlg-main.tall{background:transparent;border:0}
+.dlg-main.tall img{width:auto;max-width:100%;object-fit:contain}
+.thumbs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.thumbs button{flex:none;width:76px;height:54px;border-radius:10px;overflow:hidden;border:2px solid transparent;padding:0;cursor:pointer;background:var(--surface);opacity:.7;transition:opacity .3s,border-color .3s}
+.thumbs button[aria-current="true"]{border-color:var(--accent);opacity:1}
+.thumbs img{width:100%;height:100%;object-fit:cover;object-position:top}
+.cap{font-size:13px;color:var(--muted);margin:0}
+.dlg-text{padding:30px 30px 28px;overflow-y:auto;max-height:calc(100dvh - 32px);min-width:0}
+.dlg-text h3{margin:6px 0 6px;font:400 38px/1.1 var(--display)}
+html[lang="ar"] .dlg-text h3{font-family:var(--ar);font-weight:600;font-size:30px}
+.dlg-text h5{margin:22px 0 8px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+html[lang="ar"] .dlg-text h5{letter-spacing:0;font-size:14px}
+.dlg-text p{margin:0;color:var(--muted);font-size:15px}
+.dlg-text ul{margin:0;padding-inline-start:18px;color:var(--muted);font-size:15px;display:grid;gap:6px}
+.dlg-text li::marker{color:var(--accent)}
+.figures{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.figures div{padding:12px;border-radius:12px;background:var(--tint)}
+.figures b{display:block;white-space:nowrap;font:400 26px/1.1 var(--display);font-variant-numeric:tabular-nums}
+.figures small{font-size:12px;color:var(--muted)}
+.dlg-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.dlg-links .btn{padding:11px 18px;font-size:14px}
+.close{position:absolute;top:14px;inset-inline-end:14px;z-index:2;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);cursor:pointer;display:grid;place-items:center}
+.close svg{width:18px;height:18px}
+@media (max-width:820px){.dlg{grid-template-columns:1fr}.dlg-text{max-height:none}dialog{overflow-y:auto}.dlg-main,.dlg-main img{max-height:46dvh}}
+
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+
+<div class="ambient" aria-hidden="true"><span></span><span></span></div>
+
+<header class="wrap nav">
+  <nav class="nav-in" aria-label="Main">
+    <a class="mark" href="#top" aria-label="Dalal Alqarni, home"><svg class="seal-logo" viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--ink)" stroke-width="4"/><circle cx="60" cy="60" r="43" fill="none" stroke="var(--accent)" stroke-width="2.2"/><text x="60" y="71" text-anchor="middle" font-family="Lora, Georgia, serif" font-size="34" fill="var(--ink)" letter-spacing="2">DA</text><text x="60" y="95" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="13" fill="var(--accent)">&lt;/&gt;</text></svg><span class="mark-name" data-t="brand">Dalal Alqarni</span></a>
+    <div class="links">
+      <a href="#about" data-t="nav.about">About</a>
+      <a href="#work" data-t="nav.work">Work</a>
+      <a href="#journey" data-t="nav.journey">Journey</a>
+      <a href="#contact" data-t="nav.contact">Contact</a>
+    </div>
+    <div class="tools">
+      <button class="icon-btn" id="langBtn" type="button" aria-label="Switch language">ع</button>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Switch light or dark mode">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.2M12 19.8V22M4.9 4.9l1.6 1.6M17.5 17.5l1.6 1.6M2 12h2.2M19.8 12H22M4.9 19.1l1.6-1.6M17.5 6.5l1.6-1.6"/></svg>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div class="hero-text">
+      <span class="badge"><i></i><span data-t="hero.badge">Open to work · Riyadh</span></span>
+      <p class="role" data-t="hero.role">Junior Full-Stack Developer</p>
+      <h1><span class="line"><span data-t="hero.first">Dalal</span></span><span class="line"><span data-t="hero.last">Alqarni</span></span></h1>
+      <p class="lede"><span data-t="hero.lede">Computer Science graduate who builds</span> <span class="typed" id="typed">secure back-ends.</span></p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#work"><span data-t="hero.cta1">View my projects</span><svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <button class="btn btn-ghost" type="button" id="cvOpen"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span data-t="cv.btn">View CV</span></button>
+      </div>
+      <div class="stats">
+        <div class="stat"><b data-count="4.97">4.97</b><span data-t="stat.gpa">GPA out of 5</span></div>
+        <div class="stat"><b data-count="5">5</b><span data-t="stat.projects">Projects</span></div>
+        <div class="stat"><b data-count="11">11</b><span data-t="stat.certs">Certificates</span></div>
+        <div class="stat"><b data-count="2">2</b><span data-t="stat.tuwaiq">Tuwaiq programs</span></div>
+      </div>
+    </div>
+    <div class="hero-art">
+      <div class="code" dir="ltr" aria-label="Code sample describing Dalal as a developer">
+        <div class="code-bar"><i></i><i></i><i></i><span>developer.py</span></div>
+<pre><span class="k">class</span> <span class="c">Developer</span>:
+    name = <span class="s">"Dalal Alqarni"</span>
+    role = <span class="s">"Junior Full-Stack Developer"</span>
+    stack = [<span class="s">"Python"</span>, <span class="s">"Django"</span>,
+             <span class="s">"Flask"</span>, <span class="s">"SQLite"</span>]
+    gpa = <span class="n">4.97</span>
+
+    <span class="k">def</span> <span class="f">build</span>(self, idea):
+        <span class="k">return</span> <span class="f">tested</span>(<span class="f">secure</span>(idea))
+
+<span class="m"># open_to_work = True</span></pre>
+      </div>
+      <div class="chip c1"><span class="dot">py</span><span><span data-t="chip1.a">Python · Django</span><small data-t="chip1.b">Full-stack web</small></span></div>
+      <div class="chip c2"><span class="dot">★</span><span><span data-t="chip2.a">Expo 2030 Riyadh</span><small data-t="chip2.b">Challenge participant</small></span></div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-hidden="true"><div class="track" id="track"></div></div>
+
+  <section id="about" class="wrap">
+    <div class="about">
+      
+      <div class="about-text reveal">
+        <p class="eyebrow" data-t="about.eyebrow">About me</p>
+        <h2 data-t="about.title" data-html>Building reliable systems, <em>one step at a time</em></h2>
+        <p data-t="about.p1">I'm a Computer Science graduate from the University of Bisha (GPA 4.97/5). I build complete web applications with Python, Django, Flask, HTML and CSS, and in real projects I've worked on priority logic, data handling, authentication and audit logging.</p>
+        <p data-t="about.p2">I completed two intensive programs at Tuwaiq Academy, competed in the Expo 2030 Riyadh Challenge, and hold certifications in AI and cybersecurity. I'm at the start of my career, eager to learn and to contribute to a professional team.</p>
+      </div>
+      <div class="facts">
+          <div class="fact"><small data-t="fact.edu">Education</small><b data-t="fact.eduv">BSc Computer Science · GPA 4.97/5</b></div>
+          <div class="fact"><small data-t="fact.loc">Based in</small><b data-t="fact.locv">Riyadh, Saudi Arabia</b></div>
+          <div class="fact"><small data-t="fact.focus">Core skills</small><b data-t="fact.focusv">Programming · Databases · Web apps</b></div>
+          <div class="fact"><small data-t="fact.lang">Languages</small><b data-t="fact.langv">Arabic · English</b></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work" class="wrap">
+    <p class="eyebrow" data-t="work.eyebrow">Selected work</p>
+    <h2 data-t="work.title" data-html>Projects I'm <em>proud</em> of</h2>
+    <p class="sub" data-t="work.sub">Open any project to see the problem, my part in it, and screens from the real application.</p>
+    <div class="tabbar" role="tablist" aria-label="Portfolio sections">
+      <span class="tab-pill" id="tabPill" aria-hidden="true"></span>
+      <button class="tab" role="tab" id="tab-projects" aria-controls="panel-projects" aria-selected="true" data-t="tab.projects">Projects</button>
+      <button class="tab" role="tab" id="tab-certs" aria-controls="panel-certs" aria-selected="false" data-t="tab.certs">Certificates</button>
+      <button class="tab" role="tab" id="tab-stack" aria-controls="panel-stack" aria-selected="false" data-t="tab.stack">Tech stack</button>
+    </div>
+    <div class="panel" id="panel-projects" role="tabpanel" aria-labelledby="tab-projects"><div class="grid" id="projectGrid"></div></div>
+    <div class="panel" id="panel-certs" role="tabpanel" aria-labelledby="tab-certs" hidden><div class="certs" id="certList"></div></div>
+    <div class="panel" id="panel-stack" role="tabpanel" aria-labelledby="tab-stack" hidden><div class="stack" id="stackList"></div></div>
+  </section>
+
+  <section id="journey" class="wrap">
+    <p class="eyebrow" data-t="journey.eyebrow">Journey</p>
+    <h2 data-t="journey.title" data-html>Education, training <em>&amp; experience</em></h2>
+    <div class="timeline" id="timeline"></div>
+  </section>
+
+  <section id="contact" class="wrap" style="padding-block:0">
+    <div class="contact reveal">
+      <p class="eyebrow" style="position:relative" data-t="contact.eyebrow">Contact</p>
+      <h2 data-t="contact.title" data-html>Let's build something <em>together</em></h2>
+      <p class="sub" data-t="contact.sub">I'm open to new opportunities and always happy to connect. The fastest way to reach me is by email or LinkedIn.</p>
+      <div class="links-grid">
+        <div class="link-card">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>
+          <div><small data-t="contact.email">Email</small><b id="emailText">dalalalqarni828@gmail.com</b></div>
+          <button class="copy" type="button" id="copyBtn" data-t="contact.copy">Copy</button>
+        </div>
+        <button class="link-card cv-card" type="button" id="cvOpen2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><div><small>CV</small><b data-t="cv.btn">View CV</b></div></button>
+        <a class="link-card" href="https://www.linkedin.com/in/dalal-alqarni-a102b139b" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.06c.53-1 1.83-2.06 3.77-2.06 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.2c0-1.24-.02-2.84-1.73-2.84-1.73 0-2 1.35-2 2.75V21h-4z"/></svg>
+          <div><small>LinkedIn</small><b>dalal-alqarni</b></div>
+        </a>
+        <a class="link-card" href="https://github.com/dalalalqarni828-bit" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.85v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+          <div><small>GitHub</small><b>dalalalqarni828-bit</b></div>
+        </a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <span>© 2026 Dalal Alqarni</span>
+  <span data-t="footer">Junior Full-Stack Developer · Riyadh</span>
+</footer>
+
+<dialog id="cvDlg" class="cv-dlg" aria-label="CV">
+  <button class="close" type="button" id="cvClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <article class="cv-paper" dir="ltr" lang="en">
+    <h2 class="cv-name">Dalal Mansour Alqarni</h2>
+    <p class="cv-title">Computer Science</p>
+    <p class="cv-contact">dalalalqarni828@gmail.com · Riyadh · linkedin.com/in/dalal-alqarni-a102b139b</p>
+    <h3 class="cv-h">OBJECTIVE</h3>
+<p>Computer Science graduate with knowledge of programming, databases, and web development. Skilled in Python, Java, HTML, CSS, Flask, Django, SQLite, Git, and GitHub, with hands-on experience from team and solo projects. Strong problem-solving, teamwork, and communication skills, seeking an entry-level opportunity in the technology field to learn, grow, and contribute.</p>
+
+<h3 class="cv-h">EDUCATION</h3>
+<p><b>Bachelor's degree in Computer Science,</b> University of Bisha</p>
+<p><b>GPA:</b> 4.97 out of 5</p>
+
+<h3 class="cv-h">TRAINING</h3>
+<div class="row"><span><b>Co-op Training,</b> Hospital</span><span class="d">2024</span></div>
+
+<h3 class="cv-h">VOLUNTEERING</h3>
+<div class="row"><span><b>Administrative Volunteer,</b> Balqarn Municipality</span><span class="d">12/2024 – 08/2025</span></div>
+
+<h3 class="cv-h">PROJECTS <span class="note">· More projects in my portfolio</span></h3>
+<div class="item"><div class="row"><span><b>AssetTrace,</b> IT Asset Management System (Solo Capstone Project)</span><span class="d">10/2026</span></div>
+<p>Web app that tracks IT devices, problem tickets, maintenance costs and replacement decisions, with three user roles.</p>
+<p class="tools"><b>Tools:</b> Python, Django, SQLite, HTML, CSS</p></div>
+<div class="item"><div class="row"><span><b>EOIP,</b> Expo Operations Intelligence Platform (Expo 2030 Riyadh Challenge)</span><span class="d">10/2026</span></div>
+<p>Team platform that turns hundreds of alerts into a short prioritised list; I worked on the back end.</p>
+<p class="tools"><b>Tools:</b> Python, Django, SQLite, Git &amp; GitHub</p></div>
+<div class="item"><div class="row"><span><b>Self Scan,</b> Graduation Project – Student Attendance System</span><span class="d">2024</span></div>
+<p>Mobile attendance app using time-limited QR codes and location verification; I designed the UI and diagrams.</p>
+<p class="tools"><b>Tools:</b> Flutter, PHP, MySQL, Figma</p></div>
+
+<h3 class="cv-h">CERTIFICATIONS AND COURSES</h3>
+<div class="cert"><span><b>Web Application Development with Python Bootcamp,</b> Tuwaiq Academy</span><span class="d">07/2026 – 10/2026</span></div>
+<div class="cert"><span><b>Programming Foundation Program,</b> Tuwaiq Academy</span><span class="d">04/2026 – 06/2026</span></div>
+<div class="cert"><span><b>Artificial Intelligence Concepts and Advanced Applications,</b> SDAIA</span><span class="d">09/2025</span></div>
+<div class="cert"><span><b>Fundamentals of Artificial Intelligence,</b> SDAIA</span><span class="d">09/2025</span></div>
+<div class="cert"><span><b>Network Security and Computer Technologies,</b> TVTC</span><span class="d">08/2024</span></div>
+<div class="cert"><span><b>Cybersecurity,</b> Monshaat</span><span class="d">01/2024</span></div>
+<div class="cert"><span><b>Develop Your Own Game,</b> Developer Student Clubs</span><span class="d">01/2021</span></div>
+<div class="cert"><span><b>Introduction to Web Development,</b> Developer Student Clubs</span><span class="d">01/2021</span></div>
+<div class="cert"><span><b>Digital Forensics using Autopsy,</b> Developer Student Clubs</span><span class="d">01/2021</span></div>
+<div class="cert"><span><b>Mobile Maintenance,</b> Doroob</span><span class="d">09/2020</span></div>
+<div class="cert"><span><b>Motion Graphics using Powtoon,</b> Attaa Digital</span><span class="d">09/2020</span></div>
+
+<h3 class="cv-h">TECHNICAL &amp; SOFT SKILLS</h3>
+<ul class="skills">
+<li>Programming languages: Python, Java, C++</li><li>Web: HTML, CSS, Flask, Django</li><li>Databases: SQLite</li><li>Git &amp; GitHub</li>
+<li>Design &amp; analysis: Figma, UML, ERD</li><li>Team collaboration</li><li>Communication &amp; Interpersonal Skills</li><li>Time management</li>
+<li>Creative Problem-solving</li><li>Creative thinking</li>
+</ul>
+
+<h3 class="cv-h">LANGUAGES</h3>
+<ul class="langs"><li>Arabic</li><li>English</li></ul>
+
+  </article>
+  <p class="cv-foot" data-t="cv.note">Phone number available on request.</p>
+</dialog>
+
+<dialog id="dlg" aria-labelledby="dlgTitle">
+  <button class="close" type="button" id="dlgClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+  <div class="dlg">
+    <div class="dlg-media">
+      <div class="dlg-main" id="dlgMain"></div>
+      <p class="cap" id="dlgCap"></p>
+      <div class="thumbs" id="dlgThumbs"></div>
+    </div>
+    <div class="dlg-text" id="dlgText"></div>
+  </div>
+</dialog>
+
+<script>
+(function(){
+const UI={
+ en:{"brand":"Dalal Alqarni","cv.btn":"View CV","cv.note":"Phone number available on request.","nav.about":"About","nav.work":"Work","nav.journey":"Journey","nav.contact":"Contact",
+  "hero.badge":"Open to work · Riyadh","hero.role":"Junior Full-Stack Developer","hero.first":"Dalal","hero.last":"Alqarni",
+  "hero.lede":"Computer Science graduate who builds","hero.cta1":"View my projects","hero.cta2":"Get in touch",
+  "stat.gpa":"GPA out of 5","stat.projects":"Projects","stat.certs":"Certificates","stat.tuwaiq":"Tuwaiq programs",
+  "chip1.a":"Python · Django","chip1.b":"Full-stack web","chip2.a":"Expo 2030 Riyadh","chip2.b":"Challenge participant",
+  "about.eyebrow":"About me","about.title":"Building reliable systems, <em>one step at a time</em>",
+  "about.p1":"I'm a Computer Science graduate from the University of Bisha (GPA 4.97/5). I build complete web applications with Python, Django, Flask, HTML and CSS, and in real projects I've worked on priority logic, data handling, authentication and audit logging.",
+  "about.p2":"I completed two intensive programs at Tuwaiq Academy, competed in the Expo 2030 Riyadh Challenge, and hold certifications in AI and cybersecurity. I'm at the start of my career, eager to learn and to contribute to a professional team.",
+  "fact.edu":"Education","fact.eduv":"BSc Computer Science · GPA 4.97/5","fact.loc":"Based in","fact.locv":"Riyadh, Saudi Arabia","fact.focus":"Core skills","fact.focusv":"Programming · Databases · Web apps","fact.lang":"Languages","fact.langv":"Arabic · English",
+  "work.eyebrow":"Selected work","work.title":"Projects I'm <em>proud</em> of","work.sub":"Open any project to see the problem, my part in it, and screens from the real application.",
+  "tab.projects":"Projects","tab.certs":"Certificates","tab.stack":"Tech stack",
+  "journey.eyebrow":"Journey","journey.title":"Education, training <em>&amp; experience</em>",
+  "contact.eyebrow":"Contact","contact.title":"Let's build something <em>together</em>","contact.sub":"I'm open to new opportunities and always happy to connect. The fastest way to reach me is by email or LinkedIn.",
+  "contact.email":"Email","contact.copy":"Copy","contact.copied":"Copied","footer":"Junior Full-Stack Developer · Riyadh",
+  "open":"View details","problem":"The problem","role":"My role","features":"What it does","tech":"Built with","github":"Code on GitHub","demo":"Live demo","video":"Demo video","noRepo":"Source code was submitted to the university.",
+  "typed":["full-stack web apps.","secure back-ends.","clean, tested code.","systems people rely on."]},
+ ar:{"brand":"دلال القرني","cv.btn":"عرض السيرة الذاتية","cv.note":"رقم الجوال متاح عند الطلب.","nav.about":"نبذة","nav.work":"أعمالي","nav.journey":"مسيرتي","nav.contact":"تواصل",
+  "hero.badge":"متاحة للعمل · الرياض","hero.role":"مطوّرة Full-Stack مبتدئة","hero.first":"دلال","hero.last":"القرني",
+  "hero.lede":"خريجة علوم حاسب، أبني","hero.cta1":"شاهد مشاريعي","hero.cta2":"تواصل معي",
+  "stat.gpa":"المعدل من ٥","stat.projects":"مشاريع","stat.certs":"شهادة","stat.tuwaiq":"برنامجان في طويق",
+  "chip1.a":"Python · Django","chip1.b":"تطوير ويب متكامل","chip2.a":"إكسبو 2030 الرياض","chip2.b":"مشاركة في التحدي",
+  "about.eyebrow":"نبذة عني","about.title":"أبني أنظمة موثوقة، <em>خطوة بخطوة</em>",
+  "about.p1":"خريجة علوم حاسب من جامعة بيشة بمعدل ٤.٩٧ من ٥. أبني تطبيقات ويب متكاملة باستخدام Python وDjango وFlask وHTML وCSS، واشتغلت في مشاريع حقيقية على منطق ترتيب الأولويات، ومعالجة البيانات، وتسجيل الدخول، وسجل القرارات.",
+  "about.p2":"أتممت برنامجين مكثفين في أكاديمية طويق، وشاركت في تحدي إكسبو 2030 الرياض، وحاصلة على شهادات في الذكاء الاصطناعي والأمن السيبراني. أنا في بداية مسيرتي المهنية، وأتطلع للتعلم والمساهمة في فريق عمل احترافي.",
+  "fact.edu":"التعليم","fact.eduv":"بكالوريوس علوم حاسب · ٤.٩٧ من ٥","fact.loc":"المدينة","fact.locv":"الرياض، السعودية","fact.focus":"المهارات الأساسية","fact.focusv":"البرمجة · قواعد البيانات · تطبيقات الويب","fact.lang":"اللغات","fact.langv":"العربية · الإنجليزية",
+  "work.eyebrow":"أعمال مختارة","work.title":"مشاريع <em>أفتخر</em> بها","work.sub":"افتح أي مشروع لتشاهد المشكلة، ودوري فيه، وشاشات من التطبيق الحقيقي.",
+  "tab.projects":"المشاريع","tab.certs":"الشهادات","tab.stack":"المهارات التقنية",
+  "journey.eyebrow":"مسيرتي","journey.title":"التعليم والتدريب <em>والخبرات</em>",
+  "contact.eyebrow":"تواصل","contact.title":"لنبنِ شيئاً <em>معاً</em>","contact.sub":"منفتحة على الفرص الجديدة ويسعدني التواصل دائماً. أسرع طريقة للتواصل معي عبر البريد أو لينكدإن.",
+  "contact.email":"البريد الإلكتروني","contact.copy":"نسخ","contact.copied":"تم النسخ","footer":"مطوّرة Full-Stack مبتدئة · الرياض",
+  "open":"عرض التفاصيل","problem":"المشكلة","role":"دوري","features":"ماذا يقدم","tech":"التقنيات","github":"الكود على GitHub","demo":"العرض المباشر","video":"فيديو العرض","noRepo":"الكود سُلّم للجامعة ضمن مشروع التخرج.",
+  "typed":["تطبيقات ويب متكاملة.","أنظمة باك اند آمنة.","كوداً نظيفاً ومختبراً.","تطبيقات ويب بـ Django.","أنظمة يعتمد عليها الناس."]}
+};
+
+const PROJECTS=[
+ {id:"assettrace",wide:true,kind:"shot",cover:"img/assettrace-home.jpg",
+  repo:"https://github.com/dalalalqarni828-bit/DalalAlqarni-Capstone-Project",
+  chips:["Python","Django","SQLite","Pillow"],
+  figures:[["3",{en:"user roles",ar:"صلاحيات"}],["53",{en:"automated tests",ar:"اختبار آلي"}],["1",{en:"week to build",ar:"أسبوع للبناء"}]],
+  shots:[["img/assettrace-home.jpg",{en:"Landing page",ar:"الصفحة الرئيسية"}],["img/assettrace-dashboard.jpg",{en:"IT Manager dashboard with assets at risk",ar:"لوحة مدير IT مع الأجهزة المعرّضة للخطر"}],["img/assettrace-reports.jpg",{en:"Reports: cost and incidents per asset",ar:"التقارير: التكلفة والأعطال لكل جهاز"}]],
+  en:{title:"AssetTrace",tag:"Solo · Capstone",meta:"Tuwaiq Academy · Web Development with Python · 2026",
+   short:"IT asset management system that turns repair history into repair-or-replace decisions.",
+   problem:"Small IT teams track devices in spreadsheets and receive problem reports by WhatsApp, so nobody can see which devices keep failing or how much has already been spent on them.",
+   role:"I built the whole system on my own in one week as my capstone project: data model, business rules, permissions, views, tests and documentation (product study, wireframes, ERD and user journeys).",
+   features:["Links each device to its tickets, maintenance records and replacement requests","Three roles (Employee, IT Staff, IT Manager) with every permission checked on the server","Reports for maintenance cost, resolution time and incidents per asset","Business rules enforced in forms and in the database, such as no negative repair costs","Protected photo uploads for tickets, validated as real images up to 5 MB"]},
+  ar:{title:"AssetTrace",tag:"فردي · مشروع تخرج",meta:"أكاديمية طويق · تطوير تطبيقات الويب بـ Python · 2026",
+   short:"نظام لإدارة أجهزة تقنية المعلومات يحوّل سجل الإصلاحات إلى قرار: نصلح الجهاز أو نستبدله.",
+   problem:"فرق تقنية المعلومات الصغيرة تتابع الأجهزة في جداول إكسل وتستقبل البلاغات عبر الواتساب، فلا أحد يعرف أي الأجهزة تتعطل باستمرار ولا كم صُرف عليها.",
+   role:"بنيت النظام كاملاً بنفسي خلال أسبوع كمشروع تخرج للمعسكر: نموذج البيانات، وقواعد العمل، والصلاحيات، والواجهات، والاختبارات، والتوثيق (دراسة المنتج، والـ Wireframes، والـ ERD، ورحلات المستخدم).",
+   features:["يربط كل جهاز ببلاغاته وسجل صيانته وطلبات استبداله","ثلاث صلاحيات (موظف، فني IT، مدير IT) ويتم التحقق من كل صلاحية في السيرفر","تقارير لتكلفة الصيانة ومدة الحل وعدد الأعطال لكل جهاز","قواعد عمل مطبّقة في النماذج وقاعدة البيانات، مثل منع التكلفة السالبة","رفع صور الأعطال بشكل محمي، مع التحقق أنها صورة حقيقية لا تتجاوز ٥ ميجابايت"]}},
+ {id:"eoip",wide:true,kind:"shot",cover:"img/eoip-command.jpg",
+  repo:"https://github.com/dalalalqarni828-bit/EOIP",demo:"https://sarahibr8.github.io/EOIP/",video:"https://drive.google.com/file/d/17c5Famj9-RRXz8gjZLbL44LMZb5Uh7Vc/view",
+  chips:["Python","Django","SQLite","YOLOv8"],
+  figures:[[{en:"149→7",ar:"١٤٩←٧"},{en:"alerts to incidents",ar:"تنبيه إلى حالات"}],["65",{en:"competing teams",ar:"فريقاً متنافساً"}],["149",{en:"passing tests",ar:"اختباراً ناجحاً"}]],
+  shots:[["img/eoip-command.jpg",{en:"Command center: what needs a decision now",ar:"مركز القيادة: ما يحتاج قرارك الآن"}],["img/eoip-simulation.jpg",{en:"Operational incident with impact simulation on the map",ar:"حالة تشغيلية مع محاكاة الأثر على الخريطة"}],["img/eoip-log.jpg",{en:"Automatic escalation and permanent decision log",ar:"التصعيد التلقائي وسجل القرارات الدائم"}],["img/eoip-field.jpg",{en:"Field report from a supervisor's phone",ar:"البلاغ الميداني من جوال المشرف"}],["img/eoip-light.jpg",{en:"Light mode",ar:"الوضع الفاتح"}]],
+  en:{title:"EOIP",tag:"Team of 5 · Expo 2030",meta:"Expo 2030 Riyadh Challenge · Immersive program by Misk Skills & Tuwaiq · Oct 2026",
+   short:"Operations intelligence platform that turns hundreds of alerts into a short, prioritised list for Expo 2030 Riyadh.",
+   problem:"An expo operations center receives hundreds of alerts, radio messages and service requests from separate systems, and struggles to see what needs action right now.",
+   role:"I worked on the back end: the priority engine that scores each incident with a reason for every point, de-duplicating and linking related alerts into one incident, the decision log, and employee sign-in.",
+   features:["Filters noise, merges duplicates and links reports about the same event","Explainable priority from 0 to 100 with critical, medium and routine levels","Escalates late decisions automatically from L1 to L3","Logs every decision with the employee's name, number and time","YOLOv8 camera detection for a person falling, plus Arabic voice reports"]},
+  ar:{title:"EOIP",tag:"فريق من ٥ · إكسبو 2030",meta:"تحدي إكسبو 2030 الرياض · برنامج Immersive من مسك للمهارات وطويق · أكتوبر 2026",
+   short:"منصة ذكاء عمليات تحوّل مئات التنبيهات إلى قائمة قصيرة مرتبة بالأولوية لمعرض إكسبو 2030 الرياض.",
+   problem:"مركز عمليات المعرض تصله مئات التنبيهات والرسائل اللاسلكية وطلبات الخدمة من أنظمة منفصلة، ويصعب عليه معرفة ما يحتاج تدخلاً فورياً.",
+   role:"اشتغلت على الباك اند: محرك الأولوية الذي يعطي كل حالة درجة مع سبب لكل نقطة، ودمج البلاغات المكررة وربط المتشابهة في حالة واحدة، وسجل القرارات، وتسجيل دخول الموظفين.",
+   features:["يفلتر الضجيج ويدمج المكرر ويربط البلاغات عن نفس الحدث","أولوية قابلة للتفسير من ٠ إلى ١٠٠ بمستويات حرجة ومتوسطة وعادية","يصعّد القرارات المتأخرة تلقائياً من L1 إلى L3","يسجل كل قرار باسم الموظف ورقمه الوظيفي ووقته","رصد سقوط شخص بالكاميرا عبر YOLOv8، وبلاغات صوتية بالعربي"]}},
+ {id:"selfscan",kind:"mock",cover:"img/selfscan-cover.png",tall:true,
+  chips:["Flutter","PHP","MySQL","Figma"],
+  figures:[["3",{en:"user roles",ar:"صلاحيات"}],["2",{en:"languages",ar:"لغتان"}],["8",{en:"team members",ar:"أعضاء الفريق"}]],
+  shots:[["img/selfscan-splash-framed.png",{en:"Splash screen",ar:"شاشة البداية"}],["img/selfscan-roles-framed.png",{en:"Choose a role: student, teacher or admin",ar:"اختيار نوع المستخدم: طالب أو معلم أو مدير"}],["img/selfscan-home-framed.png",{en:"Student home",ar:"الصفحة الرئيسية للطالب"}],["img/selfscan-scan-framed.png",{en:"Attendance accepted after a valid scan",ar:"قبول الحضور بعد مسح صحيح"}],["img/selfscan-courses-framed.png",{en:"Courses with absence rate",ar:"المقررات مع نسبة الغياب"}]],
+  en:{title:"Self-Scan",tag:"Graduation project",meta:"University of Bisha · 2024",
+   short:"Mobile attendance app where students scan a time-limited QR code and their location is verified.",
+   problem:"Manual roll calls waste lecture time and are easy to cheat, and students rarely know how close they are to the absence limit.",
+   role:"I designed the app's interfaces in Figma, prepared the analysis diagrams (Use Case, Activity, Class and ERD), and took part in the PHP and MySQL back end with the team.",
+   features:["Teacher generates a QR code for each lecture that expires after a set time","Checks the distance between the student and the teacher before recording attendance","Separate interfaces for students, teachers and admins","Absence excuses as text, photo or file","Warns students who pass the absence limit; full Arabic and English support"]},
+  ar:{title:"Self-Scan",tag:"مشروع التخرج",meta:"جامعة بيشة · 2024",
+   short:"تطبيق جوال لتسجيل الحضور: الطالب يمسح رمز QR صالحاً لوقت محدد، ويتحقق النظام من موقعه.",
+   problem:"التحضير اليدوي يضيّع وقت المحاضرة ويسهل التلاعب فيه، والطالب نادراً ما يعرف كم بقي له قبل الحرمان.",
+   role:"صممت واجهات التطبيق على Figma، وأعددت مخططات التحليل (Use Case وActivity وClass وERD)، وشاركت مع الفريق في الباك اند المبني بـ PHP وMySQL.",
+   features:["المعلم ينشئ رمز QR لكل محاضرة ينتهي بعد وقت محدد","يتحقق من المسافة بين الطالب والمعلم قبل تسجيل الحضور","واجهات مستقلة للطالب والمعلم والمدير","تقديم الأعذار نصاً أو صورة أو ملفاً","تنبيه الطالب عند تجاوز حد الغياب، مع دعم كامل للعربي والإنجليزي"]}},
+ {id:"taskly",kind:"shot",cover:"img/taskly-dashboard.jpg",
+  repo:"https://github.com/dalalalqarni828-bit/Group-3---Library-Management-System",
+  chips:["Python","Flask","SQLite","HTML/CSS"],
+  figures:[["5",{en:"database tables",ar:"جداول"}],["CRUD",{en:"for tasks",ar:"للمهام"}],["06/26",{en:"completed",ar:"تاريخ الإنجاز"}]],
+  shots:[["img/taskly-dashboard.jpg",{en:"Personal dashboard",ar:"لوحة التحكم الشخصية"}],["img/taskly-tasks.jpg",{en:"Task board with priority and status",ar:"لوحة المهام مع الأولوية والحالة"}],["img/taskly-login.jpg",{en:"Sign-in page",ar:"صفحة تسجيل الدخول"}]],
+  en:{title:"Taskly",tag:"Team project",meta:"Tuwaiq Academy · Programming Foundation · 2026",
+   short:"Task management web app with accounts, priorities, due dates and a personal dashboard.",
+   problem:"Students and small teams need a simple place to plan tasks, set priorities and see their progress.",
+   role:"I wrote application code with my team, including the Flask routes and the SQLite queries behind the pages.",
+   features:["Sign up and sign in with hashed passwords","Each user sees only their own tasks","Create, edit and delete tasks with priority and due date","Dashboard with completed and pending counts","Five related tables: users, tasks, subtasks, comments and categories"]},
+  ar:{title:"Taskly",tag:"مشروع جماعي",meta:"أكاديمية طويق · المعسكر التأسيسي في البرمجة · 2026",
+   short:"تطبيق ويب لإدارة المهام بحسابات وأولويات وتواريخ استحقاق ولوحة تحكم شخصية.",
+   problem:"الطلاب والفرق الصغيرة يحتاجون مكاناً بسيطاً لتخطيط المهام وتحديد الأولويات ومتابعة الإنجاز.",
+   role:"كتبت كود التطبيق مع فريقي، ومنه مسارات Flask واستعلامات SQLite التي تعمل خلف الصفحات.",
+   features:["إنشاء حساب وتسجيل دخول مع تشفير كلمات المرور","كل مستخدم يرى مهامه فقط","إضافة المهام وتعديلها وحذفها مع الأولوية وتاريخ الاستحقاق","لوحة تحكم بعدد المهام المكتملة والمعلقة","خمسة جداول مترابطة: المستخدمون والمهام والمهام الفرعية والتعليقات والتصنيفات"]}},
+ {id:"library",kind:"term",
+  repo:"https://github.com/dalalalqarni828-bit/Group-3---Library-Management-System",
+  chips:["Python","OOP","CLI"],
+  figures:[["8",{en:"menu actions",ar:"خيارات"}],["3",{en:"classes + 2 subclasses",ar:"كلاسات + ٢ موروثة"}],["2 SAR",{en:"late fee per day",ar:"غرامة اليوم"}]],
+  shots:[],
+  en:{title:"Library System",tag:"Team project",meta:"Tuwaiq Academy · Programming Foundation · 2026",
+   short:"Command-line library manager built with object-oriented Python.",
+   problem:"A small library needs to track books, members, loans and late fees without a full database system.",
+   role:"I wrote code with my team for the classes and the menu actions, such as borrowing, returning and statistics.",
+   features:["Book, Member and Library classes, with Student and Staff members as subclasses","Borrowing limits by member type: 3 books for students, 10 for staff","Late fees of 2 SAR per day added to the member's account","Search, full listings and library statistics","Input validation so wrong values never crash the program"]},
+  ar:{title:"نظام المكتبة",tag:"مشروع جماعي",meta:"أكاديمية طويق · المعسكر التأسيسي في البرمجة · 2026",
+   short:"برنامج لإدارة مكتبة يعمل من سطر الأوامر، مبني بالبرمجة الكائنية في Python.",
+   problem:"مكتبة صغيرة تحتاج متابعة الكتب والأعضاء والإعارات وغرامات التأخير دون نظام قواعد بيانات كامل.",
+   role:"كتبت الكود مع فريقي للكلاسات وخيارات القائمة، مثل الإعارة والإرجاع والإحصائيات.",
+   features:["كلاسات Book وMember وLibrary، مع عضو طالب وعضو موظف كأصناف موروثة","حد للإعارة حسب نوع العضو: ٣ كتب للطالب و١٠ للموظف","غرامة تأخير ٢ ريال عن كل يوم تضاف لحساب العضو","بحث وعرض كامل وإحصائيات للمكتبة","التحقق من المدخلات حتى لا يتوقف البرنامج عند خطأ"]}}
+];
+
+const CERTS=[
+ {s:"TW",f:1,en:["Web Application Development with Python","Tuwaiq Academy · 07/2026 – 10/2026 · 12 weeks"],ar:["معسكر تطوير تطبيقات الويب باستخدام Python","أكاديمية طويق · 07/2026 – 10/2026 · ١٢ أسبوعاً"]},
+ {s:"TW",f:1,en:["Programming Foundation Program","Tuwaiq Academy · 04/2026 – 06/2026 · 180 hours"],ar:["المعسكر التأسيسي في البرمجة","أكاديمية طويق · 04/2026 – 06/2026 · ١٨٠ ساعة"]},
+ {s:"AI",en:["Artificial Intelligence Concepts and Advanced Applications","SDAIA · 09/2025"],ar:["مفاهيم الذكاء الاصطناعي وتطبيقاته المتقدمة","سدايا · 09/2025"]},
+ {s:"AI",en:["Fundamentals of Artificial Intelligence","SDAIA · 09/2025"],ar:["أساسيات الذكاء الاصطناعي","سدايا · 09/2025"]},
+ {s:"NS",en:["Network Security and Computer Technologies","TVTC · 08/2024"],ar:["أمن الشبكات وتقنيات الحاسب","المؤسسة العامة للتدريب التقني والمهني · 08/2024"]},
+ {s:"CS",en:["Cybersecurity","Monshaat · 01/2024"],ar:["الأمن السيبراني","منشآت · 01/2024"]},
+ {s:"WD",en:["Introduction to Web Development","Developer Student Clubs · 01/2021"],ar:["مقدمة في تطوير الويب","Developer Student Clubs · 01/2021"]},
+ {s:"DF",en:["Digital Forensics using Autopsy","Developer Student Clubs · 01/2021"],ar:["التحقيق الرقمي باستخدام Autopsy","Developer Student Clubs · 01/2021"]},
+ {s:"GD",en:["Develop Your Own Game","Developer Student Clubs · 01/2021"],ar:["طوّر لعبتك الخاصة","Developer Student Clubs · 01/2021"]},
+ {s:"MM",en:["Mobile Maintenance","Doroob · 09/2020"],ar:["صيانة الجوالات","دروب · 09/2020"]},
+ {s:"MG",en:["Motion Graphics using Powtoon","Attaa Digital · 09/2020"],ar:["الموشن جرافيك باستخدام Powtoon","عطاء الرقمي · 09/2020"]}
+];
+
+const STACK=[
+ {en:"Back-end",ar:"الباك اند",items:["Python","Django","Flask"]},
+ {en:"Databases",ar:"قواعد البيانات",items:["SQLite","ERD design"]},
+ {en:"Languages",ar:"لغات البرمجة",items:["Python","Java","C++"]},
+ {en:"Web & design",ar:"الويب والتصميم",items:["HTML","CSS","Figma","UML"]},
+ {en:"Tools",ar:"الأدوات",items:["Git","GitHub","VS Code","Microsoft Office"]},
+ {en:"Soft skills",ar:"المهارات الشخصية",items:{en:["Problem-solving","Teamwork","Communication","Time management","Creative thinking"],ar:["حل المشكلات","العمل الجماعي","التواصل","إدارة الوقت","التفكير الإبداعي"]}}
+];
+
+const JOURNEY=[
+ {d:{en:"Oct 2026",ar:"أكتوبر 2026"},k:{en:"Competition",ar:"مسابقة"},en:["Expo 2030 Riyadh Challenge","Immersive program · Misk Skills, Tuwaiq Academy & Expo 2030 Riyadh","Built EOIP with a team of five over three days, competing among 65 teams and 286 students."],ar:["تحدي إكسبو 2030 الرياض","برنامج Immersive · مسك للمهارات وأكاديمية طويق وإكسبو 2030 الرياض","بنينا منصة EOIP بفريق من خمس عضوات خلال ثلاثة أيام، ضمن ٦٥ فريقاً و٢٨٦ مشاركاً."]},
+ {d:{en:"Jul – Oct 2026",ar:"يوليو – أكتوبر 2026"},k:{en:"Bootcamp",ar:"معسكر"},en:["Web Application Development with Python","Tuwaiq Academy · 12 weeks","Django, databases and testing. Capstone project: AssetTrace, built solo in one week."],ar:["معسكر تطوير تطبيقات الويب باستخدام Python","أكاديمية طويق · ١٢ أسبوعاً","Django وقواعد البيانات والاختبارات. مشروع التخرج: AssetTrace، بنيته بشكل فردي خلال أسبوع."]},
+ {d:{en:"Apr – Jun 2026",ar:"أبريل – يونيو 2026"},k:{en:"Bootcamp",ar:"معسكر"},en:["Programming Foundation Program","Tuwaiq Academy · 180 hours","Python, object-oriented programming and Flask. Team projects: Taskly and the Library System."],ar:["المعسكر التأسيسي في البرمجة","أكاديمية طويق · ١٨٠ ساعة","Python والبرمجة الكائنية وFlask. مشاريع جماعية: Taskly ونظام المكتبة."]},
+ {d:{en:"Dec 2024 – Aug 2025",ar:"ديسمبر 2024 – أغسطس 2025"},k:{en:"Volunteer",ar:"تطوع"},en:["Administrative Volunteer","Balqarn Municipality","Managed electronic correspondence, updated data in municipal systems, prepared reports and archived documents digitally."],ar:["متطوعة إدارية","بلدية بلقرن","إدارة المراسلات الإلكترونية، وتحديث البيانات في أنظمة البلدية، وإعداد التقارير، والأرشفة الإلكترونية."]},
+ {d:{en:"2024",ar:"2024"},k:{en:"Co-op",ar:"تدريب تعاوني"},en:["Co-op Trainee","Hospital","Updated data in electronic systems, organised digital records, prepared reports and gave basic technical support to users."],ar:["متدربة تعاونية","مستشفى","تحديث البيانات في الأنظمة الإلكترونية، وتنظيم السجلات الرقمية، وإعداد التقارير، وتقديم الدعم الفني للمستخدمين."]},
+ {d:{en:"Graduated 2024",ar:"تخرجت 2024"},k:{en:"Education",ar:"تعليم"},en:["Bachelor of Computer Science","University of Bisha · GPA 4.97 / 5","Graduation project: Self-Scan, a QR attendance app with location checks."],ar:["بكالوريوس علوم الحاسب","جامعة بيشة · المعدل ٤.٩٧ من ٥","مشروع التخرج: Self-Scan، تطبيق حضور بالـ QR مع التحقق من الموقع."]}
+];
+
+const TECH="Python,Django,Flask,SQLite,Git & GitHub,Figma,UML · ERD,Java,C++,HTML & CSS".split(",");
+const root=document.documentElement;
+let lang="en";
+const $=s=>document.querySelector(s);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const arrow='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const toArDigits=s=>s.replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d]);
+
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v)}catch(e){return null}}
+
+function renderMarquee(){const unit=TECH.concat(TECH);const items=unit.concat(unit).map(t=>"<span>"+esc(t)+"</span>").join("");$("#track").innerHTML=items}
+
+function renderProjects(){
+  $("#projectGrid").innerHTML=PROJECTS.map(p=>{
+    const c=p[lang];let media="";
+    if(p.kind==="shot")media='<img src="'+p.cover+'" alt="'+esc(c.title)+' screen" loading="lazy">';
+    if(p.kind==="mock")media='<div class="phones"><img class="mock-img" src="'+p.cover+'" alt="'+esc(c.title)+' screens" loading="lazy"></div>';
+    if(p.kind==="phones")media='<div class="phones">'+p.cover.map(s=>'<img src="'+s+'" alt="" loading="lazy">').join("")+'</div>';
+    if(p.kind==="term")media='<div class="term"><b>=== LIBRARY ===</b><br>1.Add book  2.Register  3.Borrow<br>4.Return  5.Search  6.Show all<br>&gt; 3<br>Member ID: 101<br>Book title: clean code<br><span class="ok">✓ Dalal borrowed Clean Code</span><br>&gt; 7<br>Total Books: 6 · Borrowed: 1</div>';
+    return '<button class="card reveal'+(p.wide?' wide':'')+'" type="button" data-id="'+p.id+'"><div class="thumb">'+media+'<span class="tag-corner">'+esc(c.tag)+'</span></div><div class="card-body"><span class="meta">'+esc(c.meta)+'</span><h3>'+esc(c.title)+'</h3><p>'+esc(c.short)+'</p><div class="chips">'+p.chips.map(x=>"<span>"+esc(x)+"</span>").join("")+'</div><span class="more">'+UI[lang].open+arrow+'</span></div></button>';
+  }).join("");
+}
+function renderCerts(){$("#certList").innerHTML=CERTS.map(c=>'<div class="cert'+(c.f?' featured':'')+'"><span class="seal">'+c.s+'</span><div><h4>'+esc(c[lang][0])+'</h4><p>'+esc(c[lang][1])+'</p></div></div>').join("")}
+function renderStack(){$("#stackList").innerHTML=STACK.map(g=>{const items=Array.isArray(g.items)?g.items:g.items[lang];return '<div class="stack-col"><h4>'+esc(g[lang])+'</h4><div class="pills">'+items.map(i=>"<span>"+esc(i)+"</span>").join("")+'</div></div>'}).join("")}
+function renderJourney(){$("#timeline").innerHTML=JOURNEY.map(j=>'<article class="step reveal"><time>'+esc(j.d[lang])+'</time><span class="kind">'+esc(j.k[lang])+'</span><h4>'+esc(j[lang][0])+'</h4><p class="org">'+esc(j[lang][1])+'</p><p>'+esc(j[lang][2])+'</p></article>').join("")}
+
+function applyLang(l){
+  lang=l;root.lang=l;root.dir=l==="ar"?"rtl":"ltr";
+  document.querySelectorAll("[data-t]").forEach(el=>{const v=UI[l][el.dataset.t];if(v==null)return;if(el.hasAttribute("data-html"))el.innerHTML=v;else el.textContent=v});
+  $("#langBtn").textContent=l==="ar"?"EN":"ع";
+  $("#langBtn").setAttribute("aria-label",l==="ar"?"Switch to English":"التبديل إلى العربية");
+  document.querySelectorAll("[data-count]").forEach(el=>{el.textContent=l==="ar"?toArDigits(el.dataset.count).replace(".","٫"):el.dataset.count});
+  renderProjects();renderCerts();renderStack();renderJourney();movePill();
+  typedIdx=0;typedDel=false;typedPos=UI[l].typed[0].length;typedEl.textContent=UI[l].typed[0];
+  store("dalal-lang",l);
+}
+
+/* theme */
+function currentTheme(){const t=root.dataset.theme;if(t)return t;return matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}
+$("#themeBtn").addEventListener("click",()=>{const n=currentTheme()==="dark"?"light":"dark";root.dataset.theme=n;store("dalal-theme",n)});
+$("#langBtn").addEventListener("click",()=>applyLang(lang==="en"?"ar":"en"));
+
+/* tabs */
+const tabs=[...document.querySelectorAll(".tab")];
+function movePill(){const a=tabs.find(t=>t.getAttribute("aria-selected")==="true");const pill=$("#tabPill");if(!a||!pill)return;pill.style.left=a.offsetLeft+"px";pill.style.width=a.offsetWidth+"px"}
+tabs.forEach(t=>t.addEventListener("click",()=>{tabs.forEach(x=>{const on=x===t;x.setAttribute("aria-selected",on);document.getElementById(x.getAttribute("aria-controls")).hidden=!on});movePill()}));
+addEventListener("resize",movePill);
+
+/* typed */
+let typedIdx=0,typedPos=0,typedDel=false;const typedEl=$("#typed");
+const reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+function tick(){const words=UI[lang].typed;const w=words[typedIdx%words.length];
+  if(reduce){typedEl.textContent=words[0];return}
+  typedEl.textContent=w.slice(0,typedPos);
+  if(!typedDel&&typedPos<w.length){typedPos++;setTimeout(tick,65)}
+  else if(!typedDel){typedDel=true;setTimeout(tick,1900)}
+  else if(typedPos>0){typedPos--;setTimeout(tick,30)}
+  else{typedDel=false;typedIdx++;setTimeout(tick,300)}}
+
+/* counters: start from the final value so the page is complete at rest, then replay */
+function countUp(){if(reduce)return;document.querySelectorAll("[data-count]").forEach(el=>{const to=parseFloat(el.dataset.count),dec=el.dataset.count.includes(".")?2:0;const t0=performance.now();(function f(t){const p=Math.min((t-t0)/1500,1),v=(to*(1-Math.pow(1-p,3))).toFixed(dec);el.textContent=lang==="ar"?toArDigits(v).replace(".","٫"):v;if(p<1)requestAnimationFrame(f)})(t0)})}
+
+/* dialog */
+const dlg=$("#dlg");
+function openProject(id){
+  const p=PROJECTS.find(x=>x.id===id);if(!p)return;const c=p[lang],L=UI[lang];
+  const shots=p.shots;
+  const main=$("#dlgMain"),cap=$("#dlgCap"),th=$("#dlgThumbs");
+  if(shots.length){
+    main.className="dlg-main"+(p.tall?" tall":"");
+    const show=i=>{main.innerHTML='<img src="'+shots[i][0]+'" alt="'+esc(shots[i][1][lang])+'">';cap.textContent=shots[i][1][lang];[...th.children].forEach((b,k)=>b.setAttribute("aria-current",k===i))};
+    th.innerHTML=shots.map((s,i)=>'<button type="button" aria-label="'+esc(s[1][lang])+'"><img src="'+s[0]+'" alt=""></button>').join("");
+    [...th.children].forEach((b,i)=>b.addEventListener("click",()=>show(i)));show(0);
+  }else{
+    main.className="dlg-main";main.innerHTML='<div class="term" style="position:relative;inset:auto;width:100%;border-radius:14px;min-height:300px"><b>=== LIBRARY ===</b><br>1.Add book  2.Register  3.Borrow  4.Return<br>5.Search    6.Show all  7.Stats   8.Exit<br>&gt; 1<br>Title: Clean Code · Author: Robert Martin · Year: 2008<br><span class="ok">✓ Book added!</span><br>&gt; 3<br>Member ID: 101 · Book title: clean code<br><span class="ok">✓ Dalal borrowed Clean Code</span><br>&gt; 7<br>Total Books: 6<br>Total Members: 6<br>Currently Borrowed: 1<br>Unique Genres: 4<br>Total Late Fees: 0<br>&gt; 8<br>Goodbye!</div>';
+    cap.textContent=lang==="ar"?"مخرجات حقيقية من تشغيل البرنامج":"Real output from running the program";th.innerHTML="";
+  }
+  const fig=p.figures.map(f=>'<div><b>'+esc(typeof f[0]==="object"?f[0][lang]:(lang==="ar"?toArDigits(f[0]):f[0]))+'</b><small>'+esc(f[1][lang])+'</small></div>').join("");
+  let links="";
+  if(p.repo)links+='<a class="btn btn-primary" href="'+p.repo+'" target="_blank" rel="noopener">'+L.github+'</a>';
+  if(p.demo)links+='<a class="btn btn-ghost" href="'+p.demo+'" target="_blank" rel="noopener">'+L.demo+'</a>';
+  if(p.video)links+='<a class="btn btn-ghost" href="'+p.video+'" target="_blank" rel="noopener">'+L.video+'</a>';
+  if(!links)links='<p>'+L.noRepo+'</p>';
+  $("#dlgText").innerHTML='<span class="meta" style="font-size:13px;color:var(--accent);font-weight:600">'+esc(c.meta)+'</span><h3 id="dlgTitle">'+esc(c.title)+'</h3><p>'+esc(c.short)+'</p><div class="figures">'+fig+'</div><h5>'+L.problem+'</h5><p>'+esc(c.problem)+'</p><h5>'+L.role+'</h5><p>'+esc(c.role)+'</p><h5>'+L.features+'</h5><ul>'+c.features.map(f=>"<li>"+esc(f)+"</li>").join("")+'</ul><h5>'+L.tech+'</h5><div class="chips">'+p.chips.map(x=>"<span>"+esc(x)+"</span>").join("")+'</div><div class="dlg-links">'+links+'</div>';
+  dlg.showModal();$("#dlgText").scrollTop=0;
+}
+$("#projectGrid").addEventListener("click",e=>{const c=e.target.closest(".card");if(c)openProject(c.dataset.id)});
+$("#dlgClose").addEventListener("click",()=>dlg.close());
+dlg.addEventListener("click",e=>{if(e.target===dlg)dlg.close()});
+
+/* CV dialog */
+const cvDlg=$("#cvDlg");
+["#cvOpen","#cvOpen2"].forEach(id=>$(id).addEventListener("click",()=>{cvDlg.showModal();cvDlg.scrollTop=0}));
+$("#cvClose").addEventListener("click",()=>cvDlg.close());
+cvDlg.addEventListener("click",e=>{if(e.target===cvDlg)cvDlg.close()});
+
+/* copy email */
+$("#copyBtn").addEventListener("click",()=>{const t=$("#emailText").textContent,b=$("#copyBtn");
+  const done=()=>{b.textContent=UI[lang]["contact.copied"];setTimeout(()=>b.textContent=UI[lang]["contact.copy"],1800)};
+  const sel=()=>{const r=document.createRange();r.selectNodeContents($("#emailText"));const s=getSelection();s.removeAllRanges();s.addRange(r)};
+  try{navigator.clipboard.writeText(t).then(done,sel)}catch(e){sel()}});
+
+/* boot */
+const savedTheme=store("dalal-theme");if(savedTheme==="dark"||savedTheme==="light")root.dataset.theme=savedTheme;
+renderMarquee();applyLang(store("dalal-lang")==="ar"?"ar":"en");
+setTimeout(tick,900);setTimeout(countUp,500);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(movePill);
+})();
+</script>
+
+</body>
+</html>
