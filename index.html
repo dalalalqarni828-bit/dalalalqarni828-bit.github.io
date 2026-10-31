@@ -182,8 +182,8 @@ html[lang="ar"] .fact small{letter-spacing:0;font-size:13px}
 .thumb{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--tint)}
 .thumb>img{width:100%;height:100%;object-fit:cover;object-position:top;transition:transform 1s cubic-bezier(.2,.8,.2,1)}
 .card:hover .thumb>img{transform:scale(1.05)}
-.phones{position:absolute;inset:0;display:flex;justify-content:center;align-items:flex-end;gap:12px;padding-top:22px;background:linear-gradient(160deg,var(--tint),color-mix(in srgb,var(--accent) 22%,var(--tint)))}
-.phones .mock-img{width:100%;height:100%;object-fit:cover;object-position:center 20%;border:0;border-radius:0;box-shadow:none;transform:none}
+.phones{position:absolute;inset:0;display:flex;justify-content:center;align-items:center;gap:12px;padding:10px 8px;background:linear-gradient(160deg,var(--tint),color-mix(in srgb,var(--accent) 22%,var(--tint)))}
+.phones .mock-img{width:100%;height:100%;object-fit:contain;object-position:center;border:0;border-radius:0;box-shadow:none;transform:none}
 .card:hover .phones .mock-img{transform:scale(1.04)}
 .phones img{width:26%;border-radius:14px 14px 0 0;border:4px solid #fff;border-bottom:0;box-shadow:0 10px 30px -12px rgba(20,20,60,.4);transition:transform .8s cubic-bezier(.2,.8,.2,1)}
 .phones img:nth-child(2){width:29%;transform:translateY(-10px)}
@@ -567,7 +567,7 @@ const UI={
 
 const PROJECTS=[
  {id:"assettrace",wide:true,kind:"shot",cover:"img/assettrace-home.jpg",clip:"video/assettrace-demo.mp4",poster:"img/assettrace-poster.jpg",
-  repo:"https://github.com/dalalalqarni828-bit/DalalAlqarni-Capstone-Project",
+  
   chips:["Python","Django","SQLite","Pillow"],
   figures:[["3",{en:"user roles",ar:"صلاحيات"}],["53",{en:"automated tests",ar:"اختبار آلي"}],["1",{en:"week to build",ar:"أسبوع للبناء"}]],
   shots:[["img/assettrace-home.jpg",{en:"Landing page",ar:"الصفحة الرئيسية"}],["img/assettrace-dashboard.jpg",{en:"IT Manager dashboard with assets at risk",ar:"لوحة مدير IT مع الأجهزة المعرّضة للخطر"}],["img/assettrace-reports.jpg",{en:"Reports: cost and incidents per asset",ar:"التقارير: التكلفة والأعطال لكل جهاز"}]],
@@ -795,7 +795,7 @@ $("#copyBtn").addEventListener("click",()=>{const t=$("#emailText").textContent,
   try{navigator.clipboard.writeText(t).then(done,sel)}catch(e){sel()}});
 
 /* boot */
-const savedTheme=store("dalal-theme");if(savedTheme==="dark"||savedTheme==="light")root.dataset.theme=savedTheme;
+const savedTheme=store("dalal-theme");root.dataset.theme=(savedTheme==="dark")?"dark":"light";
 renderMarquee();applyLang(store("dalal-lang")==="ar"?"ar":"en");
 setTimeout(tick,900);setTimeout(countUp,500);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(movePill);

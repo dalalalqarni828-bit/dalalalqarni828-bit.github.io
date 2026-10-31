@@ -33,7 +33,7 @@ I build complete web applications, from the database and server logic to the pag
 
 | Project | Description | Tech | Links |
 |---|---|---|---|
-| **AssetTrace** | IT asset management system that tracks devices, tickets, maintenance costs and replacement decisions. Solo capstone project, built in one week with 3 user roles and 53 automated tests. | Python · Django · SQLite | [Code](https://github.com/dalalalqarni828-bit/DalalAlqarni-Capstone-Project) · [Demo video](video/assettrace-demo.mp4) |
+| **AssetTrace** | IT asset management system that tracks devices, tickets, maintenance costs and replacement decisions. Solo capstone project, built in one week with 3 user roles and 53 automated tests. | Python · Django · SQLite | [Demo video](video/assettrace-demo.mp4) |
 | **EOIP** | Operations intelligence platform that turns hundreds of alerts into a short prioritised list. Built with a team of five at the Expo 2030 Riyadh Challenge, among 65 teams. My part: priority engine, alert merging, decision log and sign-in. | Python · Django · YOLOv8 | [Code](https://github.com/dalalalqarni828-bit/EOIP) · [Demo](https://sarahibr8.github.io/EOIP/) |
 | **Self-Scan** | Mobile attendance app using time-limited QR codes and location verification. Graduation project; I designed the UI in Figma and the UML and ERD diagrams. | Flutter · Figma | — |
 | **Taskly** | Task management web app with accounts, priorities and a personal dashboard. Team project. | Python · Flask · SQLite | [Code](https://github.com/dalalalqarni828-bit/Group-3---Library-Management-System) |
